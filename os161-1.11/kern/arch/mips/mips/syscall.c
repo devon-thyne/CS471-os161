@@ -71,8 +71,13 @@ mips_syscall(struct trapframe *tf)
 
 	retval = 0;
 
+	kprintf("syscall TEST\n");
+
 	switch (callno) {
 	    case SYS_reboot:
+		#ifdef PROJ2_DEBUG
+		kprintf("syscall %d: SYS_reboot\n", callno);
+		#endif
 		err = sys_reboot(tf->tf_a0);
 		break;
 
