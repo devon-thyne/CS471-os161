@@ -1,0 +1,568 @@
+head	1.2;
+access;
+symbols
+	asst2-begin:1.2
+	asst1-end:1.2
+	asst1-begin:1.1.1.1
+	asst0-end:1.1.1.1
+	os161-1_11:1.1.1.1
+	os161:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.2
+date	2018.10.24.00.41.41;	author dthyne;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2018.09.12.20.18.56;	author dthyne;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2018.09.12.20.18.56;	author dthyne;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@Completed Project 1
+@
+text
+@/* 
+ * stoplight.c
+ *
+ * 31-1-2003 : GWA : Stub functions created for CS161 Asst1.
+ *
+ * NB: You can use any synchronization primitives available to solve
+ * the stoplight problem in this file.
+ */
+
+
+/*
+ * 
+ * Includes
+ *
+ */
+
+#include <types.h>
+#include <lib.h>
+#include <test.h>
+#include <thread.h>
+#include <synch.h>
+
+/*
+ * Number of cars created.
+ */
+
+#define NCARS 20
+
+
+/*
+ *
+ * Constants
+ *
+ */
+
+int thread_completions;
+struct lock *mutex;
+
+struct lock *NW_in;
+struct lock *NW;
+
+struct lock *NE_in;
+struct lock *NE;
+
+struct lock *SE_in;
+struct lock *SE;
+
+struct lock *SW_in;
+struct lock *SW;
+
+char *directions[] = {"North", "East", "South", "West"};
+char *turns[] = {"taking a right", "going straight", "taking a left"};
+
+/*
+ *
+ * Function Definitions
+ *
+ */
+
+
+/*
+ * gostraight()
+ *
+ * Arguments:
+ *      unsigned long cardirection: the direction from which the car
+ *              approaches the intersection.
+ *      unsigned long carnumber: the car id number for printing purposes.
+ *
+ * Returns:
+ *      nothing.
+ *
+ * Notes:
+ *      This function should implement passing straight through the
+ *      intersection from any direction.
+ *      Write and comment this function.
+ */
+
+static
+void
+gostraight(unsigned long cardirection,
+           unsigned long carnumber)
+{
+
+	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[1]);
+
+	if(cardirection == 0){
+		lock_acquire(SW);
+                lock_dual_release(NW, SW_in);
+		lock_release(SW);
+	}
+	else if(cardirection == 1){
+		lock_acquire(NW);
+		lock_dual_release(NE, NW_in);
+		lock_release(NW);
+	}
+	else if(cardirection == 2){
+                lock_acquire(NE);
+                lock_dual_release(SE, NE_in);
+		lock_release(NE);
+	}
+	else{
+                lock_acquire(SE);
+                lock_dual_release(SW, SE_in);
+		lock_release(SE);
+	} 
+}
+
+
+/*
+ * turnleft()
+ *
+ * Arguments:
+ *      unsigned long cardirection: the direction from which the car
+ *              approaches the intersection.
+ *      unsigned long carnumber: the car id number for printing purposes.
+ *
+ * Returns:
+ *      nothing.
+ *
+ * Notes:
+ *      This function should implement making a left turn through the 
+ *      intersection from any direction.
+ *      Write and comment this function.
+ */
+
+static
+void
+turnleft(unsigned long cardirection,
+         unsigned long carnumber)
+{
+
+	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[2]);
+
+	if(cardirection == 0){
+                lock_acquire(SW);
+                lock_dual_release_acquire(NW, SW_in,SE_in);
+		lock_acquire(SE);
+		lock_dual_release(SW, SE_in);
+                lock_release(SE);
+        }
+        else if(cardirection == 1){
+                lock_acquire(NW);
+                lock_dual_release_acquire(NE, NW_in, SW_in);
+                lock_acquire(SW);
+                lock_dual_release(NW, SW_in);
+                lock_release(SW);
+	}
+        else if(cardirection == 2){
+                lock_acquire(NE);
+                lock_dual_release_acquire(SE, NE_in, NW_in);
+                lock_acquire(NW);
+                lock_dual_release(NE, NW_in);
+                lock_release(NW);
+	}
+        else{
+                lock_acquire(SE);
+                lock_dual_release_acquire(SW, SE_in, NE_in);
+                lock_acquire(NE);
+                lock_dual_release(SE, NE_in);
+                lock_release(NE);
+	}
+}
+
+
+/*
+ * turnright()
+ *
+ * Arguments:
+ *      unsigned long cardirection: the direction from which the car
+ *              approaches the intersection.
+ *      unsigned long carnumber: the car id number for printing purposes.
+ *
+ * Returns:
+ *      nothing.
+ *
+ * Notes:
+ *      This function should implement making a right turn through the 
+ *      intersection from any direction.
+ *      Write and comment this function.
+ */
+
+static
+void
+turnright(unsigned long cardirection,
+          unsigned long carnumber)
+{
+	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[0]);
+
+	if(cardirection == 0){
+		lock_release(NW);
+        }
+        else if(cardirection == 1){
+                lock_release(NE);
+        }
+        else if(cardirection == 2){
+                lock_release(SE);
+        }
+        else{
+                lock_release(SW);
+        }
+
+}
+
+
+/*
+ * n %d.\n", carnumber, cardirection);
+ *
+ * approachintersection()
+ *
+ * Arguments: 
+ *      void * unusedpointer: currently unused.
+ *      unsigned long carnumber: holds car id number.
+ *
+ * Returns:
+ *      nothing.
+ *
+ * Notes:
+ *      Change this function as necessary to implement your solution. These
+ *      threads are created by createcars().  Each one must choose a direction
+ *      randomly, approach the intersection, choose a turn randomly, and then
+ *      complete that turn.  The code to choose a direction randomly is
+ *      provided, the rest is left to you to implement.  Making a turn
+ *      or going straight should be done by calling one of the functions
+ *      above.
+ */
+ 
+static
+void
+approachintersection(void * unusedpointer,
+                     unsigned long carnumber)
+{
+	/*
+	 * from North: 0
+	 * from East: 1
+	 * from South: 2
+	 * from West: 3
+ 	*/
+	unsigned long int cardirection;
+	
+	/*
+ 	* right turn: 0
+ 	* stright: 1
+	* left turn: 2
+	*/
+	unsigned long int carturn;
+
+        /*
+         * Avoid unused variable and function warnings.
+         */
+
+        (void) unusedpointer;
+
+        /*
+         * cardirection and carturn set randomly.
+         */
+
+        cardirection = (unsigned long int)(random() % 4);
+	carturn = (unsigned long int)(random() % 3);
+
+	kprintf("Car Number: %ld approaching intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[carturn]);
+
+	/*
+ 	* Filter by approach direction and intended turn type to call correct function for each car
+ 	*/
+	if(cardirection == 0){
+		if(carturn == 0){
+			lock_acquire_in(NW_in, NW, NULL);
+			lock_release(NW_in);
+
+			turnright(cardirection, carnumber);
+		}
+		else if(carturn == 1){
+                        lock_acquire_in(NW_in, NW, SW_in);
+			lock_release(NW_in);
+
+			gostraight(cardirection, carnumber);
+		}
+		else{
+                        lock_acquire_in(NW_in, NW, SW_in);
+			lock_release(NW_in);
+
+			turnleft(cardirection, carnumber);
+		}
+	}
+	else if(cardirection == 1){
+		if(carturn == 0){
+			lock_acquire_in(NE_in, NE, NULL);
+			lock_release(NE_in);
+
+			turnright(cardirection, carnumber);
+		}
+		else if(carturn == 1){
+			lock_acquire_in(NE_in, NE, NW_in);
+			lock_release(NE_in);
+
+			gostraight(cardirection, carnumber);
+		}
+		else{
+			lock_acquire_in(NE_in, NE, NW_in);
+			lock_release(NE_in);
+
+			turnleft(cardirection, carnumber);
+		}
+	}
+	else if(cardirection == 2){
+		if(carturn == 0){
+			lock_acquire_in(SE_in, SE, NULL);
+			lock_release(SE_in);
+
+			turnright(cardirection, carnumber);
+		}
+		else if(carturn == 1){
+			lock_acquire_in(SE_in, SE, NE_in);
+			lock_release(SE_in);
+
+			gostraight(cardirection, carnumber);
+		}
+		else{
+			lock_acquire_in(SE_in, SE, NE_in);
+			lock_release(SE_in);
+
+			turnleft(cardirection, carnumber);
+		}
+	}
+	else{
+		if(carturn == 0){
+			lock_acquire_in(SW_in, SW, NULL);
+			lock_release(SW_in);
+
+			turnright(cardirection, carnumber);
+		}
+		else if(carturn == 1){
+			lock_acquire_in(SW_in, SW, SE_in);
+			lock_release(SW_in);
+
+			gostraight(cardirection, carnumber);
+		}
+		else{
+			lock_acquire_in(SW_in, SW, SE_in);
+			lock_release(SW_in);
+
+			turnleft(cardirection, carnumber);
+		}
+	}
+
+	/*
+ 	* Avoid Race condidionts to edit global variable counting completed threads
+ 	*/
+	lock_acquire(mutex);
+	thread_completions++;
+	lock_release(mutex);
+
+	kprintf("Car Number: %ld has exited successfully coming from the %s and %s.\n", carnumber, directions[cardirection], turns[carturn]);
+
+	thread_exit();
+}
+
+
+/*
+ * createcars()
+ *
+ * Arguments:
+ *      int nargs: unused.
+ *      char ** args: unused.
+ *
+ * Returns:
+ *      0 on success.
+ *
+ * Notes:
+ *      Driver code to start up the approachintersection() threads.  You are
+ *      free to modiy this code as necessary for your solution.
+ */
+
+int
+createcars(int nargs,
+           char ** args)
+{
+
+        int index, error;
+
+        /*
+         * Avoid unused variable warnings.
+         */
+
+        (void) nargs;
+        (void) args;
+
+	/*
+	 * Initialize Locks
+ 	*/
+
+	thread_completions = 0;
+	mutex = lock_create("Mutex for editing global variables");
+
+	NW_in = lock_create("NW lock from inside intersection");
+	NW = lock_create("NW quadrant lock");
+	
+	NE_in = lock_create("NE lock from inside intersection");
+	NE = lock_create("NE quadrant lock");
+	
+	SE_in = lock_create("SE lock from inside intersection");
+	SE = lock_create("SE quadrant lock");
+	
+	SW_in = lock_create("SW lock from inside intersection");
+	SW = lock_create("SW quadrant lock");
+
+        /*
+         * Start NCARS approachintersection() threads.
+         */
+
+        for (index = 0; index < NCARS; index++) {
+
+                error = thread_fork(
+			"approachintersection thread",
+			NULL,
+			index,
+			approachintersection,
+			NULL
+		);
+
+                /*
+                 * panic() on error.
+                 */
+                if(error){
+                        panic(
+				"approachintersection: thread_fork failed: %s\n",
+				strerror(error)
+			);
+                }
+        }
+
+	/*
+ 	* Wrap up parent thread.
+ 	*/
+
+	while(thread_completions < NCARS) {
+		//for some reason runtime is faster without
+		//thread_yield();
+	}
+
+        return 0;
+}
+
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d21 7
+d36 11
+a46 3
+/*
+ * Number of cars created.
+ */
+d48 2
+a49 1
+#define NCARS 20
+d51 2
+d83 23
+a105 6
+        /*
+         * Avoid unused variable warnings.
+         */
+        
+        (void) cardirection;
+        (void) carnumber;
+a130 3
+        /*
+         * Avoid unused variable warnings.
+         */
+d132 30
+a161 2
+        (void) cardirection;
+        (void) carnumber;
+d187 14
+a200 3
+        /*
+         * Avoid unused variable warnings.
+         */
+a201 2
+        (void) cardirection;
+        (void) carnumber;
+d206 2
+d232 14
+a245 1
+        int cardirection;
+a251 4
+        (void) carnumber;
+	(void) gostraight;
+	(void) turnleft;
+	(void) turnright;
+d254 1
+a254 1
+         * cardirection is set randomly.
+d257 99
+a355 1
+        cardirection = random() % 4;
+d378 1
+d388 19
+d413 7
+a419 6
+                error = thread_fork("approachintersection thread",
+                                    NULL,
+                                    index,
+                                    approachintersection,
+                                    NULL
+                                    );
+d424 5
+a428 6
+
+                if (error) {
+                        
+                        panic("approachintersection: thread_fork failed: %s\n",
+                              strerror(error)
+                              );
+d432 9
+d443 1
+@
+
+
+1.1.1.1
+log
+@Import of os161
+@
+text
+@@

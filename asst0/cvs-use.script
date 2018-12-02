@@ -1,0 +1,2113 @@
+Script started on Thu 13 Sep 2018 05:52:33 PM EDT
+[?1034hbash-4.2$ cvs [K[K[K[Kcd ~/os161/0s[K[Kos161-1.11
+bash-4.2$ cvs diff -c kern/main/main.c
+Index: kern/main/main.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/main/main.c,v
+retrieving revision 1.2
+diff -c -r1.2 main.c
+*** kern/main/main.c	13 Sep 2018 21:38:10 -0000	1.2
+--- kern/main/main.c	13 Sep 2018 21:55:48 -0000
+***************
+*** 160,165 ****
+--- 160,166 ----
+  {
+  	boot();
+  
++ 	//Devon Thyne
+  	hello();
+  
+  	menu(arguments);
+bash-4.2$ cd[Kvs commit
+cvs commit: Examining .
+cvs commit: Examining bin
+cvs commit: Examining bin/cat
+cvs commit: Examining bin/cp
+cvs commit: Examining bin/false
+cvs commit: Examining bin/ln
+cvs commit: Examining bin/ls
+cvs commit: Examining bin/mkdir
+cvs commit: Examining bin/mv
+cvs commit: Examining bin/pwd
+cvs commit: Examining bin/rm
+cvs commit: Examining bin/rmdir
+cvs commit: Examining bin/sh
+cvs commit: Examining bin/sync
+cvs commit: Examining bin/true
+cvs commit: Examining include
+cvs commit: Examining include/sys
+cvs commit: Examining kern
+cvs commit: Examining kern/arch
+cvs commit: Examining kern/arch/mips
+cvs commit: Examining kern/arch/mips/conf
+cvs commit: Examining kern/arch/mips/include
+cvs commit: Examining kern/arch/mips/mips
+cvs commit: Examining kern/asst1
+cvs commit: Examining kern/compile
+cvs commit: Examining kern/conf
+cvs commit: Examining kern/dev
+cvs commit: Examining kern/dev/generic
+cvs commit: Examining kern/dev/lamebus
+cvs commit: Examining kern/fs
+cvs commit: Examining kern/fs/sfs
+cvs commit: Examining kern/fs/vfs
+cvs commit: Examining kern/include
+cvs commit: Examining kern/include/kern
+cvs commit: Examining kern/lib
+cvs commit: Examining kern/main
+cvs commit: Examining kern/test
+cvs commit: Examining kern/thread
+cvs commit: Examining kern/userprog
+cvs commit: Examining kern/vm
+cvs commit: Examining lib
+cvs commit: Examining lib/crt0
+cvs commit: Examining lib/hostcompat
+cvs commit: Examining lib/libc
+cvs commit: Examining man
+cvs commit: Examining man/bin
+cvs commit: Examining man/dev
+cvs commit: Examining man/libc
+cvs commit: Examining man/misc
+cvs commit: Examining man/sbin
+cvs commit: Examining man/syscall
+cvs commit: Examining man/testbin
+cvs commit: Examining man/toplevel
+cvs commit: Examining mk
+cvs commit: Examining sbin
+cvs commit: Examining sbin/dumpsfs
+cvs commit: Examining sbin/halt
+cvs commit: Examining sbin/mksfs
+cvs commit: Examining sbin/poweroff
+cvs commit: Examining sbin/reboot
+cvs commit: Examining testbin
+cvs commit: Examining testbin/add
+cvs commit: Examining testbin/argtest
+cvs commit: Examining testbin/badcall
+cvs commit: Examining testbin/bigfile
+cvs commit: Examining testbin/conman
+cvs commit: Examining testbin/crash
+cvs commit: Examining testbin/ctest
+cvs commit: Examining testbin/dirconc
+cvs commit: Examining testbin/dirseek
+cvs commit: Examining testbin/dirtest
+cvs commit: Examining testbin/f_test
+cvs commit: Examining testbin/farm
+cvs commit: Examining testbin/faulter
+cvs commit: Examining testbin/filetest
+cvs commit: Examining testbin/forkbomb
+cvs commit: Examining testbin/forktest
+cvs commit: Examining testbin/guzzle
+cvs commit: Examining testbin/hash
+cvs commit: Examining testbin/hog
+cvs commit: Examining testbin/huge
+cvs commit: Examining testbin/kitchen
+cvs commit: Examining testbin/malloctest
+cvs commit: Examining testbin/matmult
+cvs commit: Examining testbin/palin
+cvs commit: Examining testbin/parallelvm
+cvs commit: Examining testbin/randcall
+cvs commit: Examining testbin/rmdirtest
+cvs commit: Examining testbin/rmtest
+cvs commit: Examining testbin/sink
+cvs commit: Examining testbin/sort
+cvs commit: Examining testbin/sty
+cvs commit: Examining testbin/tail
+cvs commit: Examining testbin/tictac
+cvs commit: Examining testbin/triplehuge
+cvs commit: Examining testbin/triplemat
+cvs commit: Examining testbin/triplesort
+cvs commit: Examining testbin/userthreads
+[?1049h[?1h=[2;1H▽[6n[1;1H  [1;1H[1;77r[?12;25h[?12l[?25h[27m[m[H[2J[?25l[77;1H"/tmp/cvsqpkPw6" 9L, 300C[>c[2;1H[34mCVS: ----------------------------------------------------------------------
+CVS: Enter Log.  Lines beginning with `CVS:' are removed automatically
+CVS: 
+CVS: [m[33mCommitting in [m[31mkern/main[m
+[34mCVS: 
+CVS: [m[33mModified Files:[m
+[34mCVS:[m[31m    main.c [m
+[34mCVS: ----------------------------------------------------------------------[m
+[1m[34m~                                                                                             [11;1H~                                                                                             [12;1H~                                                                                             [13;1H~                                                                                             [14;1H~                                                                                             [15;1H~                                                                                             [16;1H~                                                                                             [17;1H~                                                                                             [18;1H~                                                                                             [19;1H~                                                                                             [20;1H~                                                                                             [21;1H~                                                                                             [22;1H~                                                                                             [23;1H~                                                                                             [24;1H~                                                                                             [25;1H~                                                                                             [26;1H~                                                                                             [27;1H~                                                                                             [28;1H~                                                                                             [29;1H~                                                                                             [30;1H~                                                                                             [31;1H~                                                                                             [32;1H~                                                                                             [33;1H~                                                                                             [34;1H~                                                                                             [35;1H~                                                                                             [36;1H~                                                                                             [37;1H~                                                                                             [38;1H~                                                                                             [39;1H~                                                                                             [40;1H~                                                                                             [41;1H~                                                                                             [42;1H~                                                                                             [43;1H~                                                                                             [44;1H~                                                                                             [45;1H~                                                                                             [46;1H~                                                                                             [47;1H~                                                                                             [48;1H~                                                                                             [49;1H~                                                                                             [50;1H~                                                                                             [51;1H~                                                                                             [52;1H~                                                                                             [53;1H~                                                                                             [54;1H~                                                                                             [55;1H~                                                                                             [56;1H~                                                                                             [57;1H~                                                                                             [58;1H~                                                                                             [59;1H~                                                                                             [60;1H~                                                                                             [61;1H~                                                                                             [62;1H~                                                                                             [63;1H~                                                                                             [64;1H~                                                                                             [65;1H~                                                                                             [66;1H~                                                                                             [67;1H~                                                                                             [68;1H~                                                                                             [69;1H~                                                                                             [70;1H~                                                                                             [71;1H~                                                                                             [72;1H~                                                                                             [73;1H~                                                                                             [74;1H~                                                                                             [75;1H~                                                                                             [76;1H~                                                                                             [m[77;77H1,0-1[9CAll[1;1H[?12l[?25h[?25l[77;1H[1m-- INSERT --[m[77;13H[K[77;77H1,1[11CAll[1;1H[?12l[?25h[?25lo[77;79H2[1;2H[?12l[?25h[?25l[1;1H[K[77;79H1[1;1H[?12l[?25h[77;1H[K[1;1H[?25l[77;77H1,0-1[9CAll[1;1H[?12l[?25h[?25l[77;77H2,1  [2;1H[?12l[?25h[?25l[77;77H1,0-1[1;1H[?12l[?25h[?25l[77;77H[K[77;1H:[?12l[?25hw[?25l[?12l[?25hq[?25l[?12l[?25h[?25l"/tmp/cvsqpkPw6" 9L, 300C written
+[?1l>[?12l[?25h[?1049l
+Log message unchanged or not specified
+a)bort, c)ontinue, e)dit, !)reuse this message unchanged for remaining dirs
+Action: (continue) c
+Checking in kern/main/main.c;
+/home/dthyne/os161/cvsroot/os161-1.11/kern/main/main.c,v  <--  main.c
+new revision: 1.3; previous revision: 1.2
+done
+bash-4.2$ cd kern/conf
+bash-4.2$ ./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.2$ cd ../con[Kmpole [K[K[K[Kile/ASST0
+bash-4.2$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/generic/console.c ../../dev/lamebus/emu.c ../../dev/lamebus/lser.c ../../dev/lamebus/lhd.c ../../dev/generic/pseudorand.c ../../dev/generic/random.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/lamebus.c ../../dev/lamebus/lrandom.c ../../dev/generic/beep.c ../../dev/lamebus/ltrace.c ../../dev/generic/rtclock.c ../../dev/lamebus/ltimer_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/beep_ltimer.c ../../dev/generic/pseudorand_att.c ../../fs/sfs/sfs_vnode.c ../../fs/sfs/sfs_fs.c ../../arch/mips/mips/dumbvm.c ../../fs/sfs/sfs_io.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.2$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c:2: warning: data definition has no type or storage class
+../../main/main.c:2: warning: type defaults to ‘int’ in declaration of ‘vfs_clearbootfs’
+../../main/main.c:3: warning: data definition has no type or storage class
+../../main/main.c:3: warning: type defaults to ‘int’ in declaration of ‘vfs_clearcurdir’
+../../main/main.c:4: warning: data definition has no type or storage class
+../../main/main.c:4: warning: type defaults to ‘int’ in declaration of ‘vfs_unmountall’
+../../main/main.c:6: warning: data definition has no type or storage class
+../../main/main.c:6: warning: type defaults to ‘int’ in declaration of ‘splhigh’
+../../main/main.c:8: warning: data definition has no type or storage class
+../../main/main.c:8: warning: type defaults to ‘int’ in declaration of ‘scheduler_shutdown’
+../../main/main.c:9: warning: data definition has no type or storage class
+../../main/main.c:9: warning: type defaults to ‘int’ in declaration of ‘thread_shutdown’
+../../main/main.c:10: error: expected identifier or ‘(’ before ‘}’ token
+../../main/main.c: In function ‘sys_reboot’:
+../../main/main.c:25: error: ‘RB_REBOOT’ undeclared (first use in this function)
+../../main/main.c:25: error: (Each undeclared identifier is reported only once
+../../main/main.c:25: error: for each function it appears in.)
+../../main/main.c:26: error: ‘RB_HALT’ undeclared (first use in this function)
+../../main/main.c:27: error: ‘RB_POWEROFF’ undeclared (first use in this function)
+../../main/main.c:30: error: ‘EINVAL’ undeclared (first use in this function)
+../../main/main.c:33: warning: implicit declaration of function ‘shutdown’
+../../main/main.c:37: warning: implicit declaration of function ‘kprintf’
+../../main/main.c:38: warning: implicit declaration of function ‘md_halt’
+../../main/main.c:42: warning: implicit declaration of function ‘md_reboot’
+../../main/main.c:46: warning: implicit declaration of function ‘md_poweroff’
+../../main/main.c:50: warning: implicit declaration of function ‘panic’
+../../main/main.c: In function ‘kmain’:
+../../main/main.c:61: warning: implicit declaration of function ‘boot’
+../../main/main.c:64: warning: implicit declaration of function ‘hello’
+../../main/main.c:66: warning: implicit declaration of function ‘menu’
+files.mk:378: recipe for target 'main.o' failed
+make: *** [main.o] Error 1
+bash-4.2$ cd ../../main
+bash-4.2$ ls
+CVS  hello.c  main.c  menu.c
+bash-4.2$ rm main.c
+bash-4.2$ cvs update -d main.c
+cvs update: warning: main.c was lost
+U main.c
+bash-4.2$ cd ../kern/conm[Kf
+bash: cd: ../kern/conf: No such file or directory
+bash-4.2$ cd ..
+bash-4.2$ ls
+arch   build-asst0.php	conf  dev  include  main      test    userprog
+asst1  compile		CVS   fs   lib	    Makefile  thread  vm
+bash-4.2$ cd k[K[K conf
+bash-4.2$ /[K./config ASST0
+Configuration ASST0
+Generating files... opt-*.h files.mk defs.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/ASST0 done
+Remember to make depend
+bash-4.2$ cd //[K[K../config [K[K[K[K[Kmpile/SA[K[KASST0
+bash-4.2$ make depend
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -M ../../dev/generic/console.c ../../dev/lamebus/emu.c ../../dev/lamebus/lser.c ../../dev/lamebus/lhd.c ../../dev/generic/pseudorand.c ../../dev/generic/random.c ../../dev/lamebus/ltimer.c ../../dev/lamebus/lamebus.c ../../dev/lamebus/lrandom.c ../../dev/generic/beep.c ../../dev/lamebus/ltrace.c ../../dev/generic/rtclock.c ../../dev/lamebus/ltimer_att.c ../../dev/lamebus/con_lser.c ../../dev/lamebus/lhd_att.c ../../dev/lamebus/random_lrandom.c ../../dev/lamebus/rtclock_ltimer.c ../../dev/lamebus/ltrace_att.c ../../dev/lamebus/lser_att.c ../../dev/lamebus/lrandom_att.c ../../dev/lamebus/emu_att.c ../../dev/lamebus/beep_ltimer.c ../../dev/generic/pseudorand_att.c ../../fs/sfs/sfs_vnode.c ../../fs/sfs/sfs_fs.c ../../arch/mips/mips/dumbvm.c ../../fs/sfs/sfs_io.c ../../arch/mips/mips/cache_mips1.S ../../arch/mips/mips/exception.S ../../arch/mips/mips/lamebus_mips.c ../../arch/mips/mips/interrupt.c ../../arch/mips/mips/pcb.c ../../arch/mips/mips/ram.c ../../arch/mips/mips/spl.c ../../arch/mips/mips/start.S ../../arch/mips/mips/switch.S ../../arch/mips/mips/syscall.c ../../arch/mips/mips/threadstart.S ../../arch/mips/mips/trap.c ../../arch/mips/mips/tlb_mips1.S ../../../lib/libc/mips-setjmp.S ../../lib/copyinout.c ../../lib/array.c ../../lib/bitmap.c ../../lib/queue.c ../../lib/kheap.c ../../lib/kprintf.c ../../lib/kgets.c ../../lib/misc.c ../../lib/ntoh.c ../../../lib/libc/__printf.c ../../../lib/libc/snprintf.c ../../../lib/libc/atoi.c ../../../lib/libc/bzero.c ../../../lib/libc/memcpy.c ../../../lib/libc/memmove.c ../../../lib/libc/strcat.c ../../../lib/libc/strchr.c ../../../lib/libc/strcmp.c ../../../lib/libc/strcpy.c ../../../lib/libc/strlen.c ../../../lib/libc/strrchr.c ../../../lib/libc/strtok_r.c ../../dev/init.c ../../fs/vfs/device.c ../../fs/vfs/vfscwd.c ../../fs/vfs/vfslist.c ../../fs/vfs/vfslookup.c ../../fs/vfs/vfspath.c ../../fs/vfs/vnode.c ../../fs/vfs/devnull.c ../../thread/hardclock.c ../../thread/synch.c ../../thread/scheduler.c ../../thread/thread.c ../../main/main.c ../../main/menu.c ../../main/hello.c ../../userprog/loadelf.c ../../userprog/runprogram.c ../../userprog/uio.c ../../test/arraytest.c ../../test/bitmaptest.c ../../test/queuetest.c ../../test/threadtest.c ../../test/tt3.c ../../test/synchtest.c ../../test/malloctest.c ../../test/fstest.c ../../compile/ASST0/autoconf.c > depend.mk
+bash-4.2$ make
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../main/main.c
+../../main/main.c: In function ‘kmain’:
+../../main/main.c:164: warning: implicit declaration of function ‘hello’
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c ../../compile/ASST0/autoconf.c
+../../conf/newvers.sh ASST0
+*** This is ASST0 build #4 ***
+cs161-gcc   -mno-abicalls -fno-pic -Wall -W -Wwrite-strings -g -nostdinc -I../../include -I../../dev -I.  -ffreestanding -D_KERNEL -G 0 -c vers.c
+cs161-ld   -nostdlib -Ttext 0x80001000 -T ../../arch/mips/conf/ldscript -G 0 console.o emu.o lser.o lhd.o pseudorand.o random.o ltimer.o lamebus.o lrandom.o beep.o ltrace.o rtclock.o ltimer_att.o con_lser.o lhd_att.o random_lrandom.o rtclock_ltimer.o ltrace_att.o lser_att.o lrandom_att.o emu_att.o beep_ltimer.o pseudorand_att.o sfs_vnode.o sfs_fs.o dumbvm.o sfs_io.o cache_mips1.o exception.o lamebus_mips.o interrupt.o pcb.o ram.o spl.o start.o switch.o syscall.o threadstart.o trap.o tlb_mips1.o mips-setjmp.o copyinout.o array.o bitmap.o queue.o kheap.o kprintf.o kgets.o misc.o ntoh.o __printf.o snprintf.o atoi.o bzero.o memcpy.o memmove.o strcat.o strchr.o strcmp.o strcpy.o strlen.o strrchr.o strtok_r.o init.o device.o vfscwd.o vfslist.o vfslookup.o vfspath.o vnode.o devnull.o hardclock.o synch.o scheduler.o thread.o main.o menu.o hello.o loadelf.o runprogram.o uio.o arraytest.o bitmaptest.o queuetest.o threadtest.o tt3.o synchtest.o malloctest.o fstest.o autoconf.o vers.o -o kernel
+cs161-size kernel
+   text	   data	    bss	    dec	    hex	filename
+ 160696	    448	   7668	 168812	  2936c	kernel
+bash-4.2$ make install
+[ -d /home/dthyne/os161/root ] || mkdir /home/dthyne/os161/root
+cp kernel /home/dthyne/os161/root/kernel-ASST0
+rm -f /home/dthyne/os161/root/kernel
+ln -s kernel-ASST0 /home/dthyne/os161/root/kernel
+bash-4.2$ cd ~/os161/os161-1.11
+bash-4.2$ v[Kcvs diff -c
+cvs diff: Diffing .
+cvs diff: Diffing bin
+cvs diff: Diffing bin/cat
+cvs diff: Diffing bin/cp
+cvs diff: Diffing bin/false
+cvs diff: Diffing bin/ln
+cvs diff: Diffing bin/ls
+cvs diff: Diffing bin/mkdir
+cvs diff: Diffing bin/mv
+cvs diff: Diffing bin/pwd
+cvs diff: Diffing bin/rm
+cvs diff: Diffing bin/rmdir
+cvs diff: Diffing bin/sh
+cvs diff: Diffing bin/sync
+cvs diff: Diffing bin/true
+cvs diff: Diffing include
+cvs diff: Diffing include/sys
+cvs diff: Diffing kern
+cvs diff: Diffing kern/arch
+cvs diff: Diffing kern/arch/mips
+cvs diff: Diffing kern/arch/mips/conf
+cvs diff: Diffing kern/arch/mips/include
+cvs diff: Diffing kern/arch/mips/mips
+cvs diff: Diffing kern/asst1
+cvs diff: Diffing kern/compile
+cvs diff: Diffing kern/conf
+cvs diff: Diffing kern/dev
+cvs diff: Diffing kern/dev/generic
+cvs diff: Diffing kern/dev/lamebus
+cvs diff: Diffing kern/fs
+cvs diff: Diffing kern/fs/sfs
+cvs diff: Diffing kern/fs/vfs
+Index: kern/fs/vfs/vfslist.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/fs/vfs/vfslist.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 vfslist.c
+*** kern/fs/vfs/vfslist.c	12 Sep 2018 20:18:57 -0000	1.1.1.1
+--- kern/fs/vfs/vfslist.c	13 Sep 2018 22:41:26 -0000
+***************
+*** 71,76 ****
+--- 71,78 ----
+  
+  	vfs_initbootfs();
+  	devnull_create();
++ 
++ 	DEBUG(0x080/*DB_VFS*/, "VFS Setup Successfully.");
+  }
+  
+  /*
+Index: kern/fs/vfs/vfslookup.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/fs/vfs/vfslookup.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 vfslookup.c
+*** kern/fs/vfs/vfslookup.c	12 Sep 2018 20:18:57 -0000	1.1.1.1
+--- kern/fs/vfs/vfslookup.c	13 Sep 2018 22:44:56 -0000
+***************
+*** 93,98 ****
+--- 93,100 ----
+  vfs_clearbootfs(void)
+  {
+  	change_bootfs(NULL);
++ 
++ 	DEBUG(0x080/*DB_VFS*/, "VFS Bootfs Cleared Successfully.");
+  }
+  
+  
+***************
+*** 252,256 ****
+--- 254,261 ----
+  	result = VOP_LOOKUP(startvn, path, retval);
+  
+  	VOP_DECREF(startvn);
++ 
++ 	DEBUG(0x080/*DB_VFS*/, "VFS Lookup Result: %d.", result);
++ 	
+  	return result;
+  }
+cvs diff: Diffing kern/include
+cvs diff: Diffing kern/include/kern
+cvs diff: Diffing kern/lib
+cvs diff: Diffing kern/main
+cvs diff: Diffing kern/test
+cvs diff: Diffing kern/thread
+Index: kern/thread/thread.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/thread/thread.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 thread.c
+*** kern/thread/thread.c	12 Sep 2018 20:18:57 -0000	1.1.1.1
+--- kern/thread/thread.c	13 Sep 2018 22:30:40 -0000
+***************
+*** 62,67 ****
+--- 62,69 ----
+  	// If you add things to the thread structure, be sure to initialize
+  	// them here.
+  	
++ 	DEBUG(0x010/*DB_THREAD*/ , "New Thread Created Successfully");
++ 	
+  	return thread;
+  }
+  
+***************
+*** 90,95 ****
+--- 92,99 ----
+  
+  	kfree(thread->t_name);
+  	kfree(thread);
++ 
++ 	DEBUG(0x010/*DB_THREAD*/, "Thread Destroyed Successfully.");
+  }
+  
+  
+***************
+*** 113,118 ****
+--- 117,124 ----
+  	result = array_setsize(zombies, 0);
+  	/* Shrinking the array; not supposed to be able to fail. */
+  	assert(result==0);
++ 
++ 	DEBUG(0x010/*DB_THREAD*/, "Zombies Exorcised Successfully.");	
+  }
+  
+  /*
+***************
+*** 589,594 ****
+  	/* Call the function */
+  	func(data1, data2);
+  
+! 	/* Done. */
+  	thread_exit();
+  }
+--- 595,600 ----
+  	/* Call the function */
+  	func(data1, data2);
+  
+! /* Done. */
+  	thread_exit();
+  }
+cvs diff: Diffing kern/userprog
+cvs diff: Diffing kern/vm
+Index: kern/vm/addrspace.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/vm/addrspace.c,v
+retrieving revision 1.1.1.1
+diff -c -r1.1.1.1 addrspace.c
+*** kern/vm/addrspace.c	12 Sep 2018 20:18:57 -0000	1.1.1.1
+--- kern/vm/addrspace.c	13 Sep 2018 22:35:23 -0000
+***************
+*** 22,27 ****
+--- 22,29 ----
+  	 * Initialize as needed.
+  	 */
+  
++ 	DEBUG(0x020/*DB_VM*/, "Address Space Created Successfully.");
++ 
+  	return as;
+  }
+  
+***************
+*** 42,47 ****
+--- 44,52 ----
+  	(void)old;
+  	
+  	*ret = newas;
++ 
++ 	DEBUG(0x020/*DB_VM*/, "Address Space Copied Successfully.");	
++ 
+  	return 0;
+  }
+  
+***************
+*** 53,58 ****
+--- 58,65 ----
+  	 */
+  	
+  	kfree(as);
++ 
++ 	DEBUG(0x020/*DB_VM*/, "Address Space Destroyed Successfully.");
+  }
+  
+  void
+***************
+*** 63,68 ****
+--- 70,77 ----
+  	 */
+  
+  	(void)as;  // suppress warning until code gets written
++ 
++ 	DEBUG(0x020/*DB_VM*/, "Address Space Activated Successfully.");
+  }
+  
+  /*
+cvs diff: Diffing lib
+cvs diff: Diffing lib/crt0
+cvs diff: Diffing lib/hostcompat
+cvs diff: Diffing lib/libc
+cvs diff: Diffing man
+cvs diff: Diffing man/bin
+cvs diff: Diffing man/dev
+cvs diff: Diffing man/libc
+cvs diff: Diffing man/misc
+cvs diff: Diffing man/sbin
+cvs diff: Diffing man/syscall
+cvs diff: Diffing man/testbin
+cvs diff: Diffing man/toplevel
+cvs diff: Diffing mk
+cvs diff: Diffing sbin
+cvs diff: Diffing sbin/dumpsfs
+cvs diff: Diffing sbin/halt
+cvs diff: Diffing sbin/mksfs
+cvs diff: Diffing sbin/poweroff
+cvs diff: Diffing sbin/reboot
+cvs diff: Diffing testbin
+cvs diff: Diffing testbin/add
+cvs diff: Diffing testbin/argtest
+cvs diff: Diffing testbin/badcall
+cvs diff: Diffing testbin/bigfile
+cvs diff: Diffing testbin/conman
+cvs diff: Diffing testbin/crash
+cvs diff: Diffing testbin/ctest
+cvs diff: Diffing testbin/dirconc
+cvs diff: Diffing testbin/dirseek
+cvs diff: Diffing testbin/dirtest
+cvs diff: Diffing testbin/f_test
+cvs diff: Diffing testbin/farm
+cvs diff: Diffing testbin/faulter
+cvs diff: Diffing testbin/filetest
+cvs diff: Diffing testbin/forkbomb
+cvs diff: Diffing testbin/forktest
+cvs diff: Diffing testbin/guzzle
+cvs diff: Diffing testbin/hash
+cvs diff: Diffing testbin/hog
+cvs diff: Diffing testbin/huge
+cvs diff: Diffing testbin/kitchen
+cvs diff: Diffing testbin/malloctest
+cvs diff: Diffing testbin/matmult
+cvs diff: Diffing testbin/palin
+cvs diff: Diffing testbin/parallelvm
+cvs diff: Diffing testbin/randcall
+cvs diff: Diffing testbin/rmdirtest
+cvs diff: Diffing testbin/rmtest
+cvs diff: Diffing testbin/sink
+cvs diff: Diffing testbin/sort
+cvs diff: Diffing testbin/sty
+cvs diff: Diffing testbin/tail
+cvs diff: Diffing testbin/tictac
+cvs diff: Diffing testbin/triplehuge
+cvs diff: Diffing testbin/triplemat
+cvs diff: Diffing testbin/triplesort
+cvs diff: Diffing testbin/userthreads
+bash-4.2$ cvs commit -m "ASST0[K[K[K[K[Kmy log messga[K[Kage"
+cvs commit: Examining .
+cvs commit: Examining bin
+cvs commit: Examining bin/cat
+cvs commit: Examining bin/cp
+cvs commit: Examining bin/false
+cvs commit: Examining bin/ln
+cvs commit: Examining bin/ls
+cvs commit: Examining bin/mkdir
+cvs commit: Examining bin/mv
+cvs commit: Examining bin/pwd
+cvs commit: Examining bin/rm
+cvs commit: Examining bin/rmdir
+cvs commit: Examining bin/sh
+cvs commit: Examining bin/sync
+cvs commit: Examining bin/true
+cvs commit: Examining include
+cvs commit: Examining include/sys
+cvs commit: Examining kern
+cvs commit: Examining kern/arch
+cvs commit: Examining kern/arch/mips
+cvs commit: Examining kern/arch/mips/conf
+cvs commit: Examining kern/arch/mips/include
+cvs commit: Examining kern/arch/mips/mips
+cvs commit: Examining kern/asst1
+cvs commit: Examining kern/compile
+cvs commit: Examining kern/conf
+cvs commit: Examining kern/dev
+cvs commit: Examining kern/dev/generic
+cvs commit: Examining kern/dev/lamebus
+cvs commit: Examining kern/fs
+cvs commit: Examining kern/fs/sfs
+cvs commit: Examining kern/fs/vfs
+cvs commit: Examining kern/include
+cvs commit: Examining kern/include/kern
+cvs commit: Examining kern/lib
+cvs commit: Examining kern/main
+cvs commit: Examining kern/test
+cvs commit: Examining kern/thread
+cvs commit: Examining kern/userprog
+cvs commit: Examining kern/vm
+cvs commit: Examining lib
+cvs commit: Examining lib/crt0
+cvs commit: Examining lib/hostcompat
+cvs commit: Examining lib/libc
+cvs commit: Examining man
+cvs commit: Examining man/bin
+cvs commit: Examining man/dev
+cvs commit: Examining man/libc
+cvs commit: Examining man/misc
+cvs commit: Examining man/sbin
+cvs commit: Examining man/syscall
+cvs commit: Examining man/testbin
+cvs commit: Examining man/toplevel
+cvs commit: Examining mk
+cvs commit: Examining sbin
+cvs commit: Examining sbin/dumpsfs
+cvs commit: Examining sbin/halt
+cvs commit: Examining sbin/mksfs
+cvs commit: Examining sbin/poweroff
+cvs commit: Examining sbin/reboot
+cvs commit: Examining testbin
+cvs commit: Examining testbin/add
+cvs commit: Examining testbin/argtest
+cvs commit: Examining testbin/badcall
+cvs commit: Examining testbin/bigfile
+cvs commit: Examining testbin/conman
+cvs commit: Examining testbin/crash
+cvs commit: Examining testbin/ctest
+cvs commit: Examining testbin/dirconc
+cvs commit: Examining testbin/dirseek
+cvs commit: Examining testbin/dirtest
+cvs commit: Examining testbin/f_test
+cvs commit: Examining testbin/farm
+cvs commit: Examining testbin/faulter
+cvs commit: Examining testbin/filetest
+cvs commit: Examining testbin/forkbomb
+cvs commit: Examining testbin/forktest
+cvs commit: Examining testbin/guzzle
+cvs commit: Examining testbin/hash
+cvs commit: Examining testbin/hog
+cvs commit: Examining testbin/huge
+cvs commit: Examining testbin/kitchen
+cvs commit: Examining testbin/malloctest
+cvs commit: Examining testbin/matmult
+cvs commit: Examining testbin/palin
+cvs commit: Examining testbin/parallelvm
+cvs commit: Examining testbin/randcall
+cvs commit: Examining testbin/rmdirtest
+cvs commit: Examining testbin/rmtest
+cvs commit: Examining testbin/sink
+cvs commit: Examining testbin/sort
+cvs commit: Examining testbin/sty
+cvs commit: Examining testbin/tail
+cvs commit: Examining testbin/tictac
+cvs commit: Examining testbin/triplehuge
+cvs commit: Examining testbin/triplemat
+cvs commit: Examining testbin/triplesort
+cvs commit: Examining testbin/userthreads
+Checking in kern/fs/vfs/vfslist.c;
+/home/dthyne/os161/cvsroot/os161-1.11/kern/fs/vfs/vfslist.c,v  <--  vfslist.c
+new revision: 1.2; previous revision: 1.1
+done
+Checking in kern/fs/vfs/vfslookup.c;
+/home/dthyne/os161/cvsroot/os161-1.11/kern/fs/vfs/vfslookup.c,v  <--  vfslookup.c
+new revision: 1.2; previous revision: 1.1
+done
+Checking in kern/thread/thread.c;
+/home/dthyne/os161/cvsroot/os161-1.11/kern/thread/thread.c,v  <--  thread.c
+new revision: 1.2; previous revision: 1.1
+done
+Checking in kern/vm/addrspace.c;
+/home/dthyne/os161/cvsroot/os161-1.11/kern/vm/addrspace.c,v  <--  addrspace.c
+new revision: 1.2; previous revision: 1.1
+done
+bash-4.2$ cd ~/os161
+bash-4.2$ cvs tag asst0-end os161.[K-1.11
+cvs tag: Tagging os161-1.11
+T os161-1.11/.cvsignore
+T os161-1.11/CHANGES
+T os161-1.11/COPYING
+T os161-1.11/Makefile
+T os161-1.11/configure
+T os161-1.11/defs.mk.sample
+cvs tag: Tagging os161-1.11/bin
+T os161-1.11/bin/Makefile
+cvs tag: Tagging os161-1.11/bin/cat
+T os161-1.11/bin/cat/.cvsignore
+T os161-1.11/bin/cat/Makefile
+T os161-1.11/bin/cat/cat.c
+T os161-1.11/bin/cat/depend.mk
+cvs tag: Tagging os161-1.11/bin/cp
+T os161-1.11/bin/cp/.cvsignore
+T os161-1.11/bin/cp/Makefile
+T os161-1.11/bin/cp/cp.c
+T os161-1.11/bin/cp/depend.mk
+cvs tag: Tagging os161-1.11/bin/false
+T os161-1.11/bin/false/.cvsignore
+T os161-1.11/bin/false/Makefile
+T os161-1.11/bin/false/depend.mk
+T os161-1.11/bin/false/false.c
+cvs tag: Tagging os161-1.11/bin/ln
+T os161-1.11/bin/ln/.cvsignore
+T os161-1.11/bin/ln/Makefile
+T os161-1.11/bin/ln/depend.mk
+T os161-1.11/bin/ln/ln.c
+cvs tag: Tagging os161-1.11/bin/ls
+T os161-1.11/bin/ls/.cvsignore
+T os161-1.11/bin/ls/Makefile
+T os161-1.11/bin/ls/depend.mk
+T os161-1.11/bin/ls/ls.c
+cvs tag: Tagging os161-1.11/bin/mkdir
+T os161-1.11/bin/mkdir/.cvsignore
+T os161-1.11/bin/mkdir/Makefile
+T os161-1.11/bin/mkdir/depend.mk
+T os161-1.11/bin/mkdir/mkdir.c
+cvs tag: Tagging os161-1.11/bin/mv
+T os161-1.11/bin/mv/.cvsignore
+T os161-1.11/bin/mv/Makefile
+T os161-1.11/bin/mv/depend.mk
+T os161-1.11/bin/mv/mv.c
+cvs tag: Tagging os161-1.11/bin/pwd
+T os161-1.11/bin/pwd/.cvsignore
+T os161-1.11/bin/pwd/Makefile
+T os161-1.11/bin/pwd/depend.mk
+T os161-1.11/bin/pwd/pwd.c
+cvs tag: Tagging os161-1.11/bin/rm
+T os161-1.11/bin/rm/.cvsignore
+T os161-1.11/bin/rm/Makefile
+T os161-1.11/bin/rm/depend.mk
+T os161-1.11/bin/rm/rm.c
+cvs tag: Tagging os161-1.11/bin/rmdir
+T os161-1.11/bin/rmdir/.cvsignore
+T os161-1.11/bin/rmdir/Makefile
+T os161-1.11/bin/rmdir/depend.mk
+T os161-1.11/bin/rmdir/rmdir.c
+cvs tag: Tagging os161-1.11/bin/sh
+T os161-1.11/bin/sh/.cvsignore
+T os161-1.11/bin/sh/Makefile
+T os161-1.11/bin/sh/depend.mk
+T os161-1.11/bin/sh/dependh.mk
+T os161-1.11/bin/sh/sh.c
+cvs tag: Tagging os161-1.11/bin/sync
+T os161-1.11/bin/sync/.cvsignore
+T os161-1.11/bin/sync/Makefile
+T os161-1.11/bin/sync/depend.mk
+T os161-1.11/bin/sync/sync.c
+cvs tag: Tagging os161-1.11/bin/true
+T os161-1.11/bin/true/.cvsignore
+T os161-1.11/bin/true/Makefile
+T os161-1.11/bin/true/depend.mk
+T os161-1.11/bin/true/true.c
+cvs tag: Tagging os161-1.11/include
+T os161-1.11/include/Makefile
+T os161-1.11/include/assert.h
+T os161-1.11/include/err.h
+T os161-1.11/include/errno.h
+T os161-1.11/include/fcntl.h
+T os161-1.11/include/limits.h
+T os161-1.11/include/setjmp.h
+T os161-1.11/include/stdarg.h
+T os161-1.11/include/stdio.h
+T os161-1.11/include/stdlib.h
+T os161-1.11/include/string.h
+T os161-1.11/include/time.h
+T os161-1.11/include/unistd.h
+cvs tag: Tagging os161-1.11/include/sys
+T os161-1.11/include/sys/ioctl.h
+T os161-1.11/include/sys/reboot.h
+T os161-1.11/include/sys/stat.h
+T os161-1.11/include/sys/types.h
+T os161-1.11/include/sys/wait.h
+cvs tag: Tagging os161-1.11/kern
+T os161-1.11/kern/Makefile
+cvs tag: Tagging os161-1.11/kern/arch
+cvs tag: Tagging os161-1.11/kern/arch/mips
+cvs tag: Tagging os161-1.11/kern/arch/mips/conf
+T os161-1.11/kern/arch/mips/conf/Makefile.mips
+T os161-1.11/kern/arch/mips/conf/conf.arch
+T os161-1.11/kern/arch/mips/conf/ldscript
+cvs tag: Tagging os161-1.11/kern/arch/mips/include
+T os161-1.11/kern/arch/mips/include/asmdefs.h
+T os161-1.11/kern/arch/mips/include/bus.h
+T os161-1.11/kern/arch/mips/include/ktypes.h
+T os161-1.11/kern/arch/mips/include/pcb.h
+T os161-1.11/kern/arch/mips/include/setjmp.h
+T os161-1.11/kern/arch/mips/include/specialreg.h
+T os161-1.11/kern/arch/mips/include/spl.h
+T os161-1.11/kern/arch/mips/include/switchframe.h
+T os161-1.11/kern/arch/mips/include/tlb.h
+T os161-1.11/kern/arch/mips/include/trapframe.h
+T os161-1.11/kern/arch/mips/include/types.h
+T os161-1.11/kern/arch/mips/include/vm.h
+cvs tag: Tagging os161-1.11/kern/arch/mips/mips
+T os161-1.11/kern/arch/mips/mips/cache_mips1.S
+T os161-1.11/kern/arch/mips/mips/dumbvm.c
+T os161-1.11/kern/arch/mips/mips/exception.S
+T os161-1.11/kern/arch/mips/mips/interrupt.c
+T os161-1.11/kern/arch/mips/mips/lamebus_mips.c
+T os161-1.11/kern/arch/mips/mips/pcb.c
+T os161-1.11/kern/arch/mips/mips/ram.c
+T os161-1.11/kern/arch/mips/mips/spl.c
+T os161-1.11/kern/arch/mips/mips/start.S
+T os161-1.11/kern/arch/mips/mips/switch.S
+T os161-1.11/kern/arch/mips/mips/syscall.c
+T os161-1.11/kern/arch/mips/mips/threadstart.S
+T os161-1.11/kern/arch/mips/mips/tlb_mips1.S
+T os161-1.11/kern/arch/mips/mips/trap.c
+cvs tag: Tagging os161-1.11/kern/asst1
+T os161-1.11/kern/asst1/catlock.c
+T os161-1.11/kern/asst1/catsem.c
+T os161-1.11/kern/asst1/stoplight.c
+cvs tag: Tagging os161-1.11/kern/compile
+T os161-1.11/kern/compile/.cvsignore
+cvs tag: Tagging os161-1.11/kern/conf
+T os161-1.11/kern/conf/ASST0
+T os161-1.11/kern/conf/ASST1
+T os161-1.11/kern/conf/ASST2
+T os161-1.11/kern/conf/ASST2-OPT
+T os161-1.11/kern/conf/ASST3
+T os161-1.11/kern/conf/ASST4
+T os161-1.11/kern/conf/ASST5
+T os161-1.11/kern/conf/conf.kern
+T os161-1.11/kern/conf/config
+T os161-1.11/kern/conf/newvers.sh
+cvs tag: Tagging os161-1.11/kern/dev
+T os161-1.11/kern/dev/init.c
+cvs tag: Tagging os161-1.11/kern/dev/generic
+T os161-1.11/kern/dev/generic/beep.c
+T os161-1.11/kern/dev/generic/beep.h
+T os161-1.11/kern/dev/generic/console.c
+T os161-1.11/kern/dev/generic/console.h
+T os161-1.11/kern/dev/generic/pseudorand.c
+T os161-1.11/kern/dev/generic/pseudorand.h
+T os161-1.11/kern/dev/generic/pseudorand_att.c
+T os161-1.11/kern/dev/generic/random.c
+T os161-1.11/kern/dev/generic/random.h
+T os161-1.11/kern/dev/generic/rtclock.c
+T os161-1.11/kern/dev/generic/rtclock.h
+cvs tag: Tagging os161-1.11/kern/dev/lamebus
+T os161-1.11/kern/dev/lamebus/beep_ltimer.c
+T os161-1.11/kern/dev/lamebus/con_lscreen.c
+T os161-1.11/kern/dev/lamebus/con_lser.c
+T os161-1.11/kern/dev/lamebus/conf.lamebus
+T os161-1.11/kern/dev/lamebus/emu.c
+T os161-1.11/kern/dev/lamebus/emu.h
+T os161-1.11/kern/dev/lamebus/emu_att.c
+T os161-1.11/kern/dev/lamebus/lamebus.c
+T os161-1.11/kern/dev/lamebus/lamebus.h
+T os161-1.11/kern/dev/lamebus/lhd.c
+T os161-1.11/kern/dev/lamebus/lhd.h
+T os161-1.11/kern/dev/lamebus/lhd_att.c
+T os161-1.11/kern/dev/lamebus/lnet.c
+T os161-1.11/kern/dev/lamebus/lnet_att.c
+T os161-1.11/kern/dev/lamebus/lrandom.c
+T os161-1.11/kern/dev/lamebus/lrandom.h
+T os161-1.11/kern/dev/lamebus/lrandom_att.c
+T os161-1.11/kern/dev/lamebus/lscreen.c
+T os161-1.11/kern/dev/lamebus/lscreen.h
+T os161-1.11/kern/dev/lamebus/lscreen_att.c
+T os161-1.11/kern/dev/lamebus/lser.c
+T os161-1.11/kern/dev/lamebus/lser.h
+T os161-1.11/kern/dev/lamebus/lser_att.c
+T os161-1.11/kern/dev/lamebus/ltimer.c
+T os161-1.11/kern/dev/lamebus/ltimer.h
+T os161-1.11/kern/dev/lamebus/ltimer_att.c
+T os161-1.11/kern/dev/lamebus/ltrace.c
+T os161-1.11/kern/dev/lamebus/ltrace.h
+T os161-1.11/kern/dev/lamebus/ltrace_att.c
+T os161-1.11/kern/dev/lamebus/random_lrandom.c
+T os161-1.11/kern/dev/lamebus/rtclock_ltimer.c
+cvs tag: Tagging os161-1.11/kern/fs
+cvs tag: Tagging os161-1.11/kern/fs/sfs
+T os161-1.11/kern/fs/sfs/sfs_fs.c
+T os161-1.11/kern/fs/sfs/sfs_io.c
+T os161-1.11/kern/fs/sfs/sfs_vnode.c
+cvs tag: Tagging os161-1.11/kern/fs/vfs
+T os161-1.11/kern/fs/vfs/device.c
+T os161-1.11/kern/fs/vfs/devnull.c
+T os161-1.11/kern/fs/vfs/vfscwd.c
+T os161-1.11/kern/fs/vfs/vfslist.c
+T os161-1.11/kern/fs/vfs/vfslookup.c
+T os161-1.11/kern/fs/vfs/vfspath.c
+T os161-1.11/kern/fs/vfs/vnode.c
+cvs tag: Tagging os161-1.11/kern/include
+T os161-1.11/kern/include/addrspace.h
+T os161-1.11/kern/include/array.h
+T os161-1.11/kern/include/bitmap.h
+T os161-1.11/kern/include/clock.h
+T os161-1.11/kern/include/curthread.h
+T os161-1.11/kern/include/dev.h
+T os161-1.11/kern/include/elf.h
+T os161-1.11/kern/include/emufs.h
+T os161-1.11/kern/include/fs.h
+T os161-1.11/kern/include/lib.h
+T os161-1.11/kern/include/queue.h
+T os161-1.11/kern/include/scheduler.h
+T os161-1.11/kern/include/sfs.h
+T os161-1.11/kern/include/stdarg.h
+T os161-1.11/kern/include/synch.h
+T os161-1.11/kern/include/syscall.h
+T os161-1.11/kern/include/test.h
+T os161-1.11/kern/include/thread.h
+T os161-1.11/kern/include/types.h
+T os161-1.11/kern/include/uio.h
+T os161-1.11/kern/include/version.h
+T os161-1.11/kern/include/vfs.h
+T os161-1.11/kern/include/vm.h
+T os161-1.11/kern/include/vnode.h
+cvs tag: Tagging os161-1.11/kern/include/kern
+T os161-1.11/kern/include/kern/callno.h
+T os161-1.11/kern/include/kern/errmsg.h
+T os161-1.11/kern/include/kern/errno.h
+T os161-1.11/kern/include/kern/ioctl.h
+T os161-1.11/kern/include/kern/limits.h
+T os161-1.11/kern/include/kern/sfs.h
+T os161-1.11/kern/include/kern/stat.h
+T os161-1.11/kern/include/kern/types.h
+T os161-1.11/kern/include/kern/unistd.h
+cvs tag: Tagging os161-1.11/kern/lib
+T os161-1.11/kern/lib/array.c
+T os161-1.11/kern/lib/bitmap.c
+T os161-1.11/kern/lib/copyinout.c
+T os161-1.11/kern/lib/kgets.c
+T os161-1.11/kern/lib/kheap.c
+T os161-1.11/kern/lib/kprintf.c
+T os161-1.11/kern/lib/misc.c
+T os161-1.11/kern/lib/ntoh.c
+T os161-1.11/kern/lib/queue.c
+cvs tag: Tagging os161-1.11/kern/main
+T os161-1.11/kern/main/main.c
+T os161-1.11/kern/main/menu.c
+cvs tag: Tagging os161-1.11/kern/test
+T os161-1.11/kern/test/arraytest.c
+T os161-1.11/kern/test/bitmaptest.c
+T os161-1.11/kern/test/fstest.c
+T os161-1.11/kern/test/malloctest.c
+T os161-1.11/kern/test/nettest.c
+T os161-1.11/kern/test/queuetest.c
+T os161-1.11/kern/test/synchtest.c
+T os161-1.11/kern/test/threadtest.c
+T os161-1.11/kern/test/tt3.c
+cvs tag: Tagging os161-1.11/kern/thread
+T os161-1.11/kern/thread/hardclock.c
+T os161-1.11/kern/thread/scheduler.c
+T os161-1.11/kern/thread/synch.c
+T os161-1.11/kern/thread/thread.c
+cvs tag: Tagging os161-1.11/kern/userprog
+T os161-1.11/kern/userprog/loadelf.c
+T os161-1.11/kern/userprog/runprogram.c
+T os161-1.11/kern/userprog/uio.c
+cvs tag: Tagging os161-1.11/kern/vm
+T os161-1.11/kern/vm/addrspace.c
+cvs tag: Tagging os161-1.11/lib
+T os161-1.11/lib/Makefile
+cvs tag: Tagging os161-1.11/lib/crt0
+T os161-1.11/lib/crt0/Makefile
+T os161-1.11/lib/crt0/mips-crt0.S
+cvs tag: Tagging os161-1.11/lib/hostcompat
+T os161-1.11/lib/hostcompat/.cvsignore
+T os161-1.11/lib/hostcompat/Makefile
+T os161-1.11/lib/hostcompat/dependh.mk
+T os161-1.11/lib/hostcompat/err.c
+T os161-1.11/lib/hostcompat/host-err.h
+T os161-1.11/lib/hostcompat/hostcompat.c
+T os161-1.11/lib/hostcompat/hostcompat.h
+T os161-1.11/lib/hostcompat/time.c
+cvs tag: Tagging os161-1.11/lib/libc
+T os161-1.11/lib/libc/.cvsignore
+T os161-1.11/lib/libc/Makefile
+T os161-1.11/lib/libc/__assert.c
+T os161-1.11/lib/libc/__printf.c
+T os161-1.11/lib/libc/__puts.c
+T os161-1.11/lib/libc/abort.c
+T os161-1.11/lib/libc/atoi.c
+T os161-1.11/lib/libc/bzero.c
+T os161-1.11/lib/libc/callno-parse.sh
+T os161-1.11/lib/libc/depend.mk
+T os161-1.11/lib/libc/err.c
+T os161-1.11/lib/libc/errno.c
+T os161-1.11/lib/libc/exit.c
+T os161-1.11/lib/libc/getchar.c
+T os161-1.11/lib/libc/getcwd.c
+T os161-1.11/lib/libc/memcmp.c
+T os161-1.11/lib/libc/memcpy.c
+T os161-1.11/lib/libc/memmove.c
+T os161-1.11/lib/libc/memset.c
+T os161-1.11/lib/libc/mips-setjmp.S
+T os161-1.11/lib/libc/printf.c
+T os161-1.11/lib/libc/putchar.c
+T os161-1.11/lib/libc/puts.c
+T os161-1.11/lib/libc/random.c
+T os161-1.11/lib/libc/snprintf.c
+T os161-1.11/lib/libc/strcat.c
+T os161-1.11/lib/libc/strchr.c
+T os161-1.11/lib/libc/strcmp.c
+T os161-1.11/lib/libc/strcpy.c
+T os161-1.11/lib/libc/strerror.c
+T os161-1.11/lib/libc/strlen.c
+T os161-1.11/lib/libc/strrchr.c
+T os161-1.11/lib/libc/strtok.c
+T os161-1.11/lib/libc/strtok_r.c
+T os161-1.11/lib/libc/syscalls-mips.S
+T os161-1.11/lib/libc/system.c
+T os161-1.11/lib/libc/time.c
+cvs tag: Tagging os161-1.11/man
+T os161-1.11/man/Makefile
+cvs tag: Tagging os161-1.11/man/bin
+T os161-1.11/man/bin/Makefile
+T os161-1.11/man/bin/cat.html
+T os161-1.11/man/bin/cp.html
+T os161-1.11/man/bin/false.html
+T os161-1.11/man/bin/index.html
+T os161-1.11/man/bin/ln.html
+T os161-1.11/man/bin/ls.html
+T os161-1.11/man/bin/mkdir.html
+T os161-1.11/man/bin/mv.html
+T os161-1.11/man/bin/pwd.html
+T os161-1.11/man/bin/rm.html
+T os161-1.11/man/bin/rmdir.html
+T os161-1.11/man/bin/sh.html
+T os161-1.11/man/bin/sync.html
+T os161-1.11/man/bin/true.html
+cvs tag: Tagging os161-1.11/man/dev
+T os161-1.11/man/dev/Makefile
+T os161-1.11/man/dev/beep.html
+T os161-1.11/man/dev/con.html
+T os161-1.11/man/dev/emu.html
+T os161-1.11/man/dev/index.html
+T os161-1.11/man/dev/lamebus.html
+T os161-1.11/man/dev/lhd.html
+T os161-1.11/man/dev/lnet.html
+T os161-1.11/man/dev/lrandom.html
+T os161-1.11/man/dev/lscreen.html
+T os161-1.11/man/dev/lser.html
+T os161-1.11/man/dev/ltimer.html
+T os161-1.11/man/dev/null.html
+T os161-1.11/man/dev/pseudorand.html
+T os161-1.11/man/dev/random.html
+T os161-1.11/man/dev/rtclock.html
+cvs tag: Tagging os161-1.11/man/libc
+T os161-1.11/man/libc/Makefile
+T os161-1.11/man/libc/__vprintf.html
+T os161-1.11/man/libc/abort.html
+T os161-1.11/man/libc/assert.html
+T os161-1.11/man/libc/atoi.html
+T os161-1.11/man/libc/bzero.html
+T os161-1.11/man/libc/calloc.html
+T os161-1.11/man/libc/err.html
+T os161-1.11/man/libc/exit.html
+T os161-1.11/man/libc/free.html
+T os161-1.11/man/libc/getchar.html
+T os161-1.11/man/libc/getcwd.html
+T os161-1.11/man/libc/index.html
+T os161-1.11/man/libc/malloc.html
+T os161-1.11/man/libc/memcpy.html
+T os161-1.11/man/libc/memmove.html
+T os161-1.11/man/libc/memset.html
+T os161-1.11/man/libc/printf.html
+T os161-1.11/man/libc/putchar.html
+T os161-1.11/man/libc/puts.html
+T os161-1.11/man/libc/random.html
+T os161-1.11/man/libc/realloc.html
+T os161-1.11/man/libc/setjmp.html
+T os161-1.11/man/libc/snprintf.html
+T os161-1.11/man/libc/stdarg.html
+T os161-1.11/man/libc/strcat.html
+T os161-1.11/man/libc/strchr.html
+T os161-1.11/man/libc/strcmp.html
+T os161-1.11/man/libc/strcpy.html
+T os161-1.11/man/libc/strerror.html
+T os161-1.11/man/libc/strlen.html
+T os161-1.11/man/libc/strrchr.html
+T os161-1.11/man/libc/strtok.html
+T os161-1.11/man/libc/strtok_r.html
+T os161-1.11/man/libc/system.html
+T os161-1.11/man/libc/time.html
+T os161-1.11/man/libc/warn.html
+cvs tag: Tagging os161-1.11/man/misc
+T os161-1.11/man/misc/Makefile
+T os161-1.11/man/misc/index.html
+cvs tag: Tagging os161-1.11/man/sbin
+T os161-1.11/man/sbin/Makefile
+T os161-1.11/man/sbin/dumpsfs.html
+T os161-1.11/man/sbin/halt.html
+T os161-1.11/man/sbin/index.html
+T os161-1.11/man/sbin/mksfs.html
+T os161-1.11/man/sbin/poweroff.html
+T os161-1.11/man/sbin/reboot.html
+cvs tag: Tagging os161-1.11/man/syscall
+T os161-1.11/man/syscall/Makefile
+T os161-1.11/man/syscall/__getcwd.html
+T os161-1.11/man/syscall/__time.html
+T os161-1.11/man/syscall/_exit.html
+T os161-1.11/man/syscall/chdir.html
+T os161-1.11/man/syscall/close.html
+T os161-1.11/man/syscall/dup2.html
+T os161-1.11/man/syscall/errno.html
+T os161-1.11/man/syscall/execv.html
+T os161-1.11/man/syscall/fork.html
+T os161-1.11/man/syscall/fstat.html
+T os161-1.11/man/syscall/fsync.html
+T os161-1.11/man/syscall/ftruncate.html
+T os161-1.11/man/syscall/getdirentry.html
+T os161-1.11/man/syscall/getpid.html
+T os161-1.11/man/syscall/index.html
+T os161-1.11/man/syscall/ioctl.html
+T os161-1.11/man/syscall/link.html
+T os161-1.11/man/syscall/lseek.html
+T os161-1.11/man/syscall/lstat.html
+T os161-1.11/man/syscall/mkdir.html
+T os161-1.11/man/syscall/open.html
+T os161-1.11/man/syscall/pipe.html
+T os161-1.11/man/syscall/read.html
+T os161-1.11/man/syscall/readlink.html
+T os161-1.11/man/syscall/reboot.html
+T os161-1.11/man/syscall/remove.html
+T os161-1.11/man/syscall/rename.html
+T os161-1.11/man/syscall/rmdir.html
+T os161-1.11/man/syscall/sbrk.html
+T os161-1.11/man/syscall/stat.html
+T os161-1.11/man/syscall/symlink.html
+T os161-1.11/man/syscall/sync.html
+T os161-1.11/man/syscall/waitpid.html
+T os161-1.11/man/syscall/write.html
+cvs tag: Tagging os161-1.11/man/testbin
+T os161-1.11/man/testbin/Makefile
+T os161-1.11/man/testbin/add.html
+T os161-1.11/man/testbin/argtest.html
+T os161-1.11/man/testbin/badcall.html
+T os161-1.11/man/testbin/bigfile.html
+T os161-1.11/man/testbin/conman.html
+T os161-1.11/man/testbin/crash.html
+T os161-1.11/man/testbin/ctest.html
+T os161-1.11/man/testbin/dirseek.html
+T os161-1.11/man/testbin/dirtest.html
+T os161-1.11/man/testbin/f_test.html
+T os161-1.11/man/testbin/farm.html
+T os161-1.11/man/testbin/faulter.html
+T os161-1.11/man/testbin/filetest.html
+T os161-1.11/man/testbin/forkbomb.html
+T os161-1.11/man/testbin/forktest.html
+T os161-1.11/man/testbin/guzzle.html
+T os161-1.11/man/testbin/hash.html
+T os161-1.11/man/testbin/hog.html
+T os161-1.11/man/testbin/huge.html
+T os161-1.11/man/testbin/index.html
+T os161-1.11/man/testbin/kitchen.html
+T os161-1.11/man/testbin/malloctest.html
+T os161-1.11/man/testbin/matmult.html
+T os161-1.11/man/testbin/palin.html
+T os161-1.11/man/testbin/randcall.html
+T os161-1.11/man/testbin/rmdirtest.html
+T os161-1.11/man/testbin/rmtest.html
+T os161-1.11/man/testbin/sink.html
+T os161-1.11/man/testbin/sort.html
+T os161-1.11/man/testbin/sty.html
+T os161-1.11/man/testbin/tail.html
+T os161-1.11/man/testbin/tictac.html
+T os161-1.11/man/testbin/triplehuge.html
+T os161-1.11/man/testbin/triplemat.html
+T os161-1.11/man/testbin/triplesort.html
+T os161-1.11/man/testbin/userthreads.html
+cvs tag: Tagging os161-1.11/man/toplevel
+T os161-1.11/man/toplevel/Makefile
+T os161-1.11/man/toplevel/index.html
+cvs tag: Tagging os161-1.11/mk
+T os161-1.11/mk/hostprog.mk
+T os161-1.11/mk/lib.mk
+T os161-1.11/mk/man.mk
+T os161-1.11/mk/prog.mk
+cvs tag: Tagging os161-1.11/sbin
+T os161-1.11/sbin/Makefile
+cvs tag: Tagging os161-1.11/sbin/dumpsfs
+T os161-1.11/sbin/dumpsfs/.cvsignore
+T os161-1.11/sbin/dumpsfs/Makefile
+T os161-1.11/sbin/dumpsfs/depend.mk
+T os161-1.11/sbin/dumpsfs/dependh.mk
+T os161-1.11/sbin/dumpsfs/dumpsfs.c
+cvs tag: Tagging os161-1.11/sbin/halt
+T os161-1.11/sbin/halt/.cvsignore
+T os161-1.11/sbin/halt/Makefile
+T os161-1.11/sbin/halt/depend.mk
+T os161-1.11/sbin/halt/halt.c
+cvs tag: Tagging os161-1.11/sbin/mksfs
+T os161-1.11/sbin/mksfs/.cvsignore
+T os161-1.11/sbin/mksfs/Makefile
+T os161-1.11/sbin/mksfs/depend.mk
+T os161-1.11/sbin/mksfs/dependh.mk
+T os161-1.11/sbin/mksfs/disk.c
+T os161-1.11/sbin/mksfs/disk.h
+T os161-1.11/sbin/mksfs/mksfs.c
+T os161-1.11/sbin/mksfs/support.c
+T os161-1.11/sbin/mksfs/support.h
+cvs tag: Tagging os161-1.11/sbin/poweroff
+T os161-1.11/sbin/poweroff/.cvsignore
+T os161-1.11/sbin/poweroff/Makefile
+T os161-1.11/sbin/poweroff/depend.mk
+T os161-1.11/sbin/poweroff/poweroff.c
+cvs tag: Tagging os161-1.11/sbin/reboot
+T os161-1.11/sbin/reboot/.cvsignore
+T os161-1.11/sbin/reboot/Makefile
+T os161-1.11/sbin/reboot/depend.mk
+T os161-1.11/sbin/reboot/reboot.c
+cvs tag: Tagging os161-1.11/testbin
+T os161-1.11/testbin/Makefile
+cvs tag: Tagging os161-1.11/testbin/add
+T os161-1.11/testbin/add/.cvsignore
+T os161-1.11/testbin/add/Makefile
+T os161-1.11/testbin/add/add.c
+T os161-1.11/testbin/add/depend.mk
+cvs tag: Tagging os161-1.11/testbin/argtest
+T os161-1.11/testbin/argtest/.cvsignore
+T os161-1.11/testbin/argtest/Makefile
+T os161-1.11/testbin/argtest/argtest.c
+T os161-1.11/testbin/argtest/depend.mk
+cvs tag: Tagging os161-1.11/testbin/badcall
+T os161-1.11/testbin/badcall/.cvsignore
+T os161-1.11/testbin/badcall/Makefile
+T os161-1.11/testbin/badcall/bad_chdir.c
+T os161-1.11/testbin/badcall/bad_close.c
+T os161-1.11/testbin/badcall/bad_dup2.c
+T os161-1.11/testbin/badcall/bad_execv.c
+T os161-1.11/testbin/badcall/bad_fsync.c
+T os161-1.11/testbin/badcall/bad_ftruncate.c
+T os161-1.11/testbin/badcall/bad_getcwd.c
+T os161-1.11/testbin/badcall/bad_getdirentry.c
+T os161-1.11/testbin/badcall/bad_ioctl.c
+T os161-1.11/testbin/badcall/bad_link.c
+T os161-1.11/testbin/badcall/bad_lseek.c
+T os161-1.11/testbin/badcall/bad_mkdir.c
+T os161-1.11/testbin/badcall/bad_open.c
+T os161-1.11/testbin/badcall/bad_pipe.c
+T os161-1.11/testbin/badcall/bad_read.c
+T os161-1.11/testbin/badcall/bad_readlink.c
+T os161-1.11/testbin/badcall/bad_reboot.c
+T os161-1.11/testbin/badcall/bad_remove.c
+T os161-1.11/testbin/badcall/bad_rename.c
+T os161-1.11/testbin/badcall/bad_rmdir.c
+T os161-1.11/testbin/badcall/bad_sbrk.c
+T os161-1.11/testbin/badcall/bad_stat.c
+T os161-1.11/testbin/badcall/bad_symlink.c
+T os161-1.11/testbin/badcall/bad_time.c
+T os161-1.11/testbin/badcall/bad_waitpid.c
+T os161-1.11/testbin/badcall/bad_write.c
+T os161-1.11/testbin/badcall/common_buf.c
+T os161-1.11/testbin/badcall/common_fds.c
+T os161-1.11/testbin/badcall/common_path.c
+T os161-1.11/testbin/badcall/config.h
+T os161-1.11/testbin/badcall/depend.mk
+T os161-1.11/testbin/badcall/driver.c
+T os161-1.11/testbin/badcall/test.h
+cvs tag: Tagging os161-1.11/testbin/bigfile
+T os161-1.11/testbin/bigfile/.cvsignore
+T os161-1.11/testbin/bigfile/Makefile
+T os161-1.11/testbin/bigfile/bigfile.c
+T os161-1.11/testbin/bigfile/depend.mk
+cvs tag: Tagging os161-1.11/testbin/conman
+T os161-1.11/testbin/conman/.cvsignore
+T os161-1.11/testbin/conman/Makefile
+T os161-1.11/testbin/conman/conman.c
+T os161-1.11/testbin/conman/depend.mk
+cvs tag: Tagging os161-1.11/testbin/crash
+T os161-1.11/testbin/crash/.cvsignore
+T os161-1.11/testbin/crash/Makefile
+T os161-1.11/testbin/crash/crash.c
+T os161-1.11/testbin/crash/depend.mk
+cvs tag: Tagging os161-1.11/testbin/ctest
+T os161-1.11/testbin/ctest/.cvsignore
+T os161-1.11/testbin/ctest/Makefile
+T os161-1.11/testbin/ctest/ctest.c
+T os161-1.11/testbin/ctest/depend.mk
+cvs tag: Tagging os161-1.11/testbin/dirconc
+T os161-1.11/testbin/dirconc/.cvsignore
+T os161-1.11/testbin/dirconc/Makefile
+T os161-1.11/testbin/dirconc/depend.mk
+T os161-1.11/testbin/dirconc/dirconc.c
+cvs tag: Tagging os161-1.11/testbin/dirseek
+T os161-1.11/testbin/dirseek/.cvsignore
+T os161-1.11/testbin/dirseek/Makefile
+T os161-1.11/testbin/dirseek/depend.mk
+T os161-1.11/testbin/dirseek/dirseek.c
+cvs tag: Tagging os161-1.11/testbin/dirtest
+T os161-1.11/testbin/dirtest/.cvsignore
+T os161-1.11/testbin/dirtest/Makefile
+T os161-1.11/testbin/dirtest/depend.mk
+T os161-1.11/testbin/dirtest/dirtest.c
+cvs tag: Tagging os161-1.11/testbin/f_test
+T os161-1.11/testbin/f_test/.cvsignore
+T os161-1.11/testbin/f_test/Makefile
+T os161-1.11/testbin/f_test/depend.mk
+T os161-1.11/testbin/f_test/f_hdr.h
+T os161-1.11/testbin/f_test/f_read.c
+T os161-1.11/testbin/f_test/f_test.c
+T os161-1.11/testbin/f_test/f_write.c
+cvs tag: Tagging os161-1.11/testbin/farm
+T os161-1.11/testbin/farm/.cvsignore
+T os161-1.11/testbin/farm/Makefile
+T os161-1.11/testbin/farm/depend.mk
+T os161-1.11/testbin/farm/farm.c
+cvs tag: Tagging os161-1.11/testbin/faulter
+T os161-1.11/testbin/faulter/.cvsignore
+T os161-1.11/testbin/faulter/Makefile
+T os161-1.11/testbin/faulter/depend.mk
+T os161-1.11/testbin/faulter/faulter.c
+cvs tag: Tagging os161-1.11/testbin/filetest
+T os161-1.11/testbin/filetest/.cvsignore
+T os161-1.11/testbin/filetest/Makefile
+T os161-1.11/testbin/filetest/depend.mk
+T os161-1.11/testbin/filetest/filetest.c
+cvs tag: Tagging os161-1.11/testbin/forkbomb
+T os161-1.11/testbin/forkbomb/.cvsignore
+T os161-1.11/testbin/forkbomb/Makefile
+T os161-1.11/testbin/forkbomb/depend.mk
+T os161-1.11/testbin/forkbomb/forkbomb.c
+cvs tag: Tagging os161-1.11/testbin/forktest
+T os161-1.11/testbin/forktest/.cvsignore
+T os161-1.11/testbin/forktest/Makefile
+T os161-1.11/testbin/forktest/depend.mk
+T os161-1.11/testbin/forktest/forktest.c
+cvs tag: Tagging os161-1.11/testbin/guzzle
+T os161-1.11/testbin/guzzle/.cvsignore
+T os161-1.11/testbin/guzzle/Makefile
+T os161-1.11/testbin/guzzle/depend.mk
+T os161-1.11/testbin/guzzle/guzzle.c
+cvs tag: Tagging os161-1.11/testbin/hash
+T os161-1.11/testbin/hash/.cvsignore
+T os161-1.11/testbin/hash/Makefile
+T os161-1.11/testbin/hash/depend.mk
+T os161-1.11/testbin/hash/dependh.mk
+T os161-1.11/testbin/hash/hash.c
+cvs tag: Tagging os161-1.11/testbin/hog
+T os161-1.11/testbin/hog/.cvsignore
+T os161-1.11/testbin/hog/Makefile
+T os161-1.11/testbin/hog/depend.mk
+T os161-1.11/testbin/hog/hog.c
+cvs tag: Tagging os161-1.11/testbin/huge
+T os161-1.11/testbin/huge/.cvsignore
+T os161-1.11/testbin/huge/Makefile
+T os161-1.11/testbin/huge/depend.mk
+T os161-1.11/testbin/huge/huge.c
+cvs tag: Tagging os161-1.11/testbin/kitchen
+T os161-1.11/testbin/kitchen/.cvsignore
+T os161-1.11/testbin/kitchen/Makefile
+T os161-1.11/testbin/kitchen/depend.mk
+T os161-1.11/testbin/kitchen/kitchen.c
+cvs tag: Tagging os161-1.11/testbin/malloctest
+T os161-1.11/testbin/malloctest/.cvsignore
+T os161-1.11/testbin/malloctest/Makefile
+T os161-1.11/testbin/malloctest/depend.mk
+T os161-1.11/testbin/malloctest/malloctest.c
+cvs tag: Tagging os161-1.11/testbin/matmult
+T os161-1.11/testbin/matmult/.cvsignore
+T os161-1.11/testbin/matmult/Makefile
+T os161-1.11/testbin/matmult/depend.mk
+T os161-1.11/testbin/matmult/matmult-orig.c
+T os161-1.11/testbin/matmult/matmult.c
+cvs tag: Tagging os161-1.11/testbin/palin
+T os161-1.11/testbin/palin/.cvsignore
+T os161-1.11/testbin/palin/Makefile
+T os161-1.11/testbin/palin/depend.mk
+T os161-1.11/testbin/palin/palin.c
+cvs tag: Tagging os161-1.11/testbin/parallelvm
+T os161-1.11/testbin/parallelvm/.cvsignore
+T os161-1.11/testbin/parallelvm/Makefile
+T os161-1.11/testbin/parallelvm/depend.mk
+T os161-1.11/testbin/parallelvm/parallelvm.c
+cvs tag: Tagging os161-1.11/testbin/randcall
+T os161-1.11/testbin/randcall/.cvsignore
+T os161-1.11/testbin/randcall/Makefile
+T os161-1.11/testbin/randcall/callspecs.txt
+T os161-1.11/testbin/randcall/depend.mk
+T os161-1.11/testbin/randcall/extern.h
+T os161-1.11/testbin/randcall/gencalls.sh
+T os161-1.11/testbin/randcall/main.c
+cvs tag: Tagging os161-1.11/testbin/rmdirtest
+T os161-1.11/testbin/rmdirtest/.cvsignore
+T os161-1.11/testbin/rmdirtest/Makefile
+T os161-1.11/testbin/rmdirtest/depend.mk
+T os161-1.11/testbin/rmdirtest/rmdirtest.c
+cvs tag: Tagging os161-1.11/testbin/rmtest
+T os161-1.11/testbin/rmtest/.cvsignore
+T os161-1.11/testbin/rmtest/Makefile
+T os161-1.11/testbin/rmtest/depend.mk
+T os161-1.11/testbin/rmtest/rmtest.c
+cvs tag: Tagging os161-1.11/testbin/sink
+T os161-1.11/testbin/sink/.cvsignore
+T os161-1.11/testbin/sink/Makefile
+T os161-1.11/testbin/sink/depend.mk
+T os161-1.11/testbin/sink/sink.c
+cvs tag: Tagging os161-1.11/testbin/sort
+T os161-1.11/testbin/sort/.cvsignore
+T os161-1.11/testbin/sort/Makefile
+T os161-1.11/testbin/sort/depend.mk
+T os161-1.11/testbin/sort/sort.c
+cvs tag: Tagging os161-1.11/testbin/sty
+T os161-1.11/testbin/sty/.cvsignore
+T os161-1.11/testbin/sty/Makefile
+T os161-1.11/testbin/sty/depend.mk
+T os161-1.11/testbin/sty/sty.c
+cvs tag: Tagging os161-1.11/testbin/tail
+T os161-1.11/testbin/tail/.cvsignore
+T os161-1.11/testbin/tail/Makefile
+T os161-1.11/testbin/tail/depend.mk
+T os161-1.11/testbin/tail/tail.c
+cvs tag: Tagging os161-1.11/testbin/tictac
+T os161-1.11/testbin/tictac/.cvsignore
+T os161-1.11/testbin/tictac/Makefile
+T os161-1.11/testbin/tictac/depend.mk
+T os161-1.11/testbin/tictac/tictac.c
+cvs tag: Tagging os161-1.11/testbin/triplehuge
+T os161-1.11/testbin/triplehuge/.cvsignore
+T os161-1.11/testbin/triplehuge/Makefile
+T os161-1.11/testbin/triplehuge/depend.mk
+T os161-1.11/testbin/triplehuge/triple.c
+T os161-1.11/testbin/triplehuge/triple.h
+T os161-1.11/testbin/triplehuge/triplehuge.c
+cvs tag: Tagging os161-1.11/testbin/triplemat
+T os161-1.11/testbin/triplemat/.cvsignore
+T os161-1.11/testbin/triplemat/Makefile
+T os161-1.11/testbin/triplemat/depend.mk
+T os161-1.11/testbin/triplemat/triplemat.c
+cvs tag: Tagging os161-1.11/testbin/triplesort
+T os161-1.11/testbin/triplesort/.cvsignore
+T os161-1.11/testbin/triplesort/Makefile
+T os161-1.11/testbin/triplesort/depend.mk
+T os161-1.11/testbin/triplesort/triplesort.c
+cvs tag: Tagging os161-1.11/testbin/userthreads
+T os161-1.11/testbin/userthreads/.cvsignore
+T os161-1.11/testbin/userthreads/Makefile
+T os161-1.11/testbin/userthreads/depend.mk
+T os161-1.11/testbin/userthreads/userthreads.c
+bash-4.2$ cd ~/os1616[K/asst0
+bash-4.2$ cvs export[K[K[K[K[K[K[K[K[K[Kcvs export -rasst-[K0-end os161-1.11
+cvs export: Updating os161-1.11
+U os161-1.11/.cvsignore
+U os161-1.11/CHANGES
+U os161-1.11/COPYING
+U os161-1.11/Makefile
+U os161-1.11/configure
+U os161-1.11/defs.mk.sample
+cvs export: Updating os161-1.11/bin
+U os161-1.11/bin/Makefile
+cvs export: Updating os161-1.11/bin/cat
+U os161-1.11/bin/cat/.cvsignore
+U os161-1.11/bin/cat/Makefile
+U os161-1.11/bin/cat/cat.c
+U os161-1.11/bin/cat/depend.mk
+cvs export: Updating os161-1.11/bin/cp
+U os161-1.11/bin/cp/.cvsignore
+U os161-1.11/bin/cp/Makefile
+U os161-1.11/bin/cp/cp.c
+U os161-1.11/bin/cp/depend.mk
+cvs export: Updating os161-1.11/bin/false
+U os161-1.11/bin/false/.cvsignore
+U os161-1.11/bin/false/Makefile
+U os161-1.11/bin/false/depend.mk
+U os161-1.11/bin/false/false.c
+cvs export: Updating os161-1.11/bin/ln
+U os161-1.11/bin/ln/.cvsignore
+U os161-1.11/bin/ln/Makefile
+U os161-1.11/bin/ln/depend.mk
+U os161-1.11/bin/ln/ln.c
+cvs export: Updating os161-1.11/bin/ls
+U os161-1.11/bin/ls/.cvsignore
+U os161-1.11/bin/ls/Makefile
+U os161-1.11/bin/ls/depend.mk
+U os161-1.11/bin/ls/ls.c
+cvs export: Updating os161-1.11/bin/mkdir
+U os161-1.11/bin/mkdir/.cvsignore
+U os161-1.11/bin/mkdir/Makefile
+U os161-1.11/bin/mkdir/depend.mk
+U os161-1.11/bin/mkdir/mkdir.c
+cvs export: Updating os161-1.11/bin/mv
+U os161-1.11/bin/mv/.cvsignore
+U os161-1.11/bin/mv/Makefile
+U os161-1.11/bin/mv/depend.mk
+U os161-1.11/bin/mv/mv.c
+cvs export: Updating os161-1.11/bin/pwd
+U os161-1.11/bin/pwd/.cvsignore
+U os161-1.11/bin/pwd/Makefile
+U os161-1.11/bin/pwd/depend.mk
+U os161-1.11/bin/pwd/pwd.c
+cvs export: Updating os161-1.11/bin/rm
+U os161-1.11/bin/rm/.cvsignore
+U os161-1.11/bin/rm/Makefile
+U os161-1.11/bin/rm/depend.mk
+U os161-1.11/bin/rm/rm.c
+cvs export: Updating os161-1.11/bin/rmdir
+U os161-1.11/bin/rmdir/.cvsignore
+U os161-1.11/bin/rmdir/Makefile
+U os161-1.11/bin/rmdir/depend.mk
+U os161-1.11/bin/rmdir/rmdir.c
+cvs export: Updating os161-1.11/bin/sh
+U os161-1.11/bin/sh/.cvsignore
+U os161-1.11/bin/sh/Makefile
+U os161-1.11/bin/sh/depend.mk
+U os161-1.11/bin/sh/dependh.mk
+U os161-1.11/bin/sh/sh.c
+cvs export: Updating os161-1.11/bin/sync
+U os161-1.11/bin/sync/.cvsignore
+U os161-1.11/bin/sync/Makefile
+U os161-1.11/bin/sync/depend.mk
+U os161-1.11/bin/sync/sync.c
+cvs export: Updating os161-1.11/bin/true
+U os161-1.11/bin/true/.cvsignore
+U os161-1.11/bin/true/Makefile
+U os161-1.11/bin/true/depend.mk
+U os161-1.11/bin/true/true.c
+cvs export: Updating os161-1.11/include
+U os161-1.11/include/Makefile
+U os161-1.11/include/assert.h
+U os161-1.11/include/err.h
+U os161-1.11/include/errno.h
+U os161-1.11/include/fcntl.h
+U os161-1.11/include/limits.h
+U os161-1.11/include/setjmp.h
+U os161-1.11/include/stdarg.h
+U os161-1.11/include/stdio.h
+U os161-1.11/include/stdlib.h
+U os161-1.11/include/string.h
+U os161-1.11/include/time.h
+U os161-1.11/include/unistd.h
+cvs export: Updating os161-1.11/include/sys
+U os161-1.11/include/sys/ioctl.h
+U os161-1.11/include/sys/reboot.h
+U os161-1.11/include/sys/stat.h
+U os161-1.11/include/sys/types.h
+U os161-1.11/include/sys/wait.h
+cvs export: Updating os161-1.11/kern
+U os161-1.11/kern/Makefile
+cvs export: Updating os161-1.11/kern/arch
+cvs export: Updating os161-1.11/kern/arch/mips
+cvs export: Updating os161-1.11/kern/arch/mips/conf
+U os161-1.11/kern/arch/mips/conf/Makefile.mips
+U os161-1.11/kern/arch/mips/conf/conf.arch
+U os161-1.11/kern/arch/mips/conf/ldscript
+cvs export: Updating os161-1.11/kern/arch/mips/include
+U os161-1.11/kern/arch/mips/include/asmdefs.h
+U os161-1.11/kern/arch/mips/include/bus.h
+U os161-1.11/kern/arch/mips/include/ktypes.h
+U os161-1.11/kern/arch/mips/include/pcb.h
+U os161-1.11/kern/arch/mips/include/setjmp.h
+U os161-1.11/kern/arch/mips/include/specialreg.h
+U os161-1.11/kern/arch/mips/include/spl.h
+U os161-1.11/kern/arch/mips/include/switchframe.h
+U os161-1.11/kern/arch/mips/include/tlb.h
+U os161-1.11/kern/arch/mips/include/trapframe.h
+U os161-1.11/kern/arch/mips/include/types.h
+U os161-1.11/kern/arch/mips/include/vm.h
+cvs export: Updating os161-1.11/kern/arch/mips/mips
+U os161-1.11/kern/arch/mips/mips/cache_mips1.S
+U os161-1.11/kern/arch/mips/mips/dumbvm.c
+U os161-1.11/kern/arch/mips/mips/exception.S
+U os161-1.11/kern/arch/mips/mips/interrupt.c
+U os161-1.11/kern/arch/mips/mips/lamebus_mips.c
+U os161-1.11/kern/arch/mips/mips/pcb.c
+U os161-1.11/kern/arch/mips/mips/ram.c
+U os161-1.11/kern/arch/mips/mips/spl.c
+U os161-1.11/kern/arch/mips/mips/start.S
+U os161-1.11/kern/arch/mips/mips/switch.S
+U os161-1.11/kern/arch/mips/mips/syscall.c
+U os161-1.11/kern/arch/mips/mips/threadstart.S
+U os161-1.11/kern/arch/mips/mips/tlb_mips1.S
+U os161-1.11/kern/arch/mips/mips/trap.c
+cvs export: Updating os161-1.11/kern/asst1
+U os161-1.11/kern/asst1/catlock.c
+U os161-1.11/kern/asst1/catsem.c
+U os161-1.11/kern/asst1/stoplight.c
+cvs export: Updating os161-1.11/kern/compile
+U os161-1.11/kern/compile/.cvsignore
+cvs export: Updating os161-1.11/kern/conf
+U os161-1.11/kern/conf/ASST0
+U os161-1.11/kern/conf/ASST1
+U os161-1.11/kern/conf/ASST2
+U os161-1.11/kern/conf/ASST2-OPT
+U os161-1.11/kern/conf/ASST3
+U os161-1.11/kern/conf/ASST4
+U os161-1.11/kern/conf/ASST5
+U os161-1.11/kern/conf/conf.kern
+U os161-1.11/kern/conf/config
+U os161-1.11/kern/conf/newvers.sh
+cvs export: Updating os161-1.11/kern/dev
+U os161-1.11/kern/dev/init.c
+cvs export: Updating os161-1.11/kern/dev/generic
+U os161-1.11/kern/dev/generic/beep.c
+U os161-1.11/kern/dev/generic/beep.h
+U os161-1.11/kern/dev/generic/console.c
+U os161-1.11/kern/dev/generic/console.h
+U os161-1.11/kern/dev/generic/pseudorand.c
+U os161-1.11/kern/dev/generic/pseudorand.h
+U os161-1.11/kern/dev/generic/pseudorand_att.c
+U os161-1.11/kern/dev/generic/random.c
+U os161-1.11/kern/dev/generic/random.h
+U os161-1.11/kern/dev/generic/rtclock.c
+U os161-1.11/kern/dev/generic/rtclock.h
+cvs export: Updating os161-1.11/kern/dev/lamebus
+U os161-1.11/kern/dev/lamebus/beep_ltimer.c
+U os161-1.11/kern/dev/lamebus/con_lscreen.c
+U os161-1.11/kern/dev/lamebus/con_lser.c
+U os161-1.11/kern/dev/lamebus/conf.lamebus
+U os161-1.11/kern/dev/lamebus/emu.c
+U os161-1.11/kern/dev/lamebus/emu.h
+U os161-1.11/kern/dev/lamebus/emu_att.c
+U os161-1.11/kern/dev/lamebus/lamebus.c
+U os161-1.11/kern/dev/lamebus/lamebus.h
+U os161-1.11/kern/dev/lamebus/lhd.c
+U os161-1.11/kern/dev/lamebus/lhd.h
+U os161-1.11/kern/dev/lamebus/lhd_att.c
+U os161-1.11/kern/dev/lamebus/lnet.c
+U os161-1.11/kern/dev/lamebus/lnet_att.c
+U os161-1.11/kern/dev/lamebus/lrandom.c
+U os161-1.11/kern/dev/lamebus/lrandom.h
+U os161-1.11/kern/dev/lamebus/lrandom_att.c
+U os161-1.11/kern/dev/lamebus/lscreen.c
+U os161-1.11/kern/dev/lamebus/lscreen.h
+U os161-1.11/kern/dev/lamebus/lscreen_att.c
+U os161-1.11/kern/dev/lamebus/lser.c
+U os161-1.11/kern/dev/lamebus/lser.h
+U os161-1.11/kern/dev/lamebus/lser_att.c
+U os161-1.11/kern/dev/lamebus/ltimer.c
+U os161-1.11/kern/dev/lamebus/ltimer.h
+U os161-1.11/kern/dev/lamebus/ltimer_att.c
+U os161-1.11/kern/dev/lamebus/ltrace.c
+U os161-1.11/kern/dev/lamebus/ltrace.h
+U os161-1.11/kern/dev/lamebus/ltrace_att.c
+U os161-1.11/kern/dev/lamebus/random_lrandom.c
+U os161-1.11/kern/dev/lamebus/rtclock_ltimer.c
+cvs export: Updating os161-1.11/kern/fs
+cvs export: Updating os161-1.11/kern/fs/sfs
+U os161-1.11/kern/fs/sfs/sfs_fs.c
+U os161-1.11/kern/fs/sfs/sfs_io.c
+U os161-1.11/kern/fs/sfs/sfs_vnode.c
+cvs export: Updating os161-1.11/kern/fs/vfs
+U os161-1.11/kern/fs/vfs/device.c
+U os161-1.11/kern/fs/vfs/devnull.c
+U os161-1.11/kern/fs/vfs/vfscwd.c
+U os161-1.11/kern/fs/vfs/vfslist.c
+U os161-1.11/kern/fs/vfs/vfslookup.c
+U os161-1.11/kern/fs/vfs/vfspath.c
+U os161-1.11/kern/fs/vfs/vnode.c
+cvs export: Updating os161-1.11/kern/include
+U os161-1.11/kern/include/addrspace.h
+U os161-1.11/kern/include/array.h
+U os161-1.11/kern/include/bitmap.h
+U os161-1.11/kern/include/clock.h
+U os161-1.11/kern/include/curthread.h
+U os161-1.11/kern/include/dev.h
+U os161-1.11/kern/include/elf.h
+U os161-1.11/kern/include/emufs.h
+U os161-1.11/kern/include/fs.h
+U os161-1.11/kern/include/lib.h
+U os161-1.11/kern/include/queue.h
+U os161-1.11/kern/include/scheduler.h
+U os161-1.11/kern/include/sfs.h
+U os161-1.11/kern/include/stdarg.h
+U os161-1.11/kern/include/synch.h
+U os161-1.11/kern/include/syscall.h
+U os161-1.11/kern/include/test.h
+U os161-1.11/kern/include/thread.h
+U os161-1.11/kern/include/types.h
+U os161-1.11/kern/include/uio.h
+U os161-1.11/kern/include/version.h
+U os161-1.11/kern/include/vfs.h
+U os161-1.11/kern/include/vm.h
+U os161-1.11/kern/include/vnode.h
+cvs export: Updating os161-1.11/kern/include/kern
+U os161-1.11/kern/include/kern/callno.h
+U os161-1.11/kern/include/kern/errmsg.h
+U os161-1.11/kern/include/kern/errno.h
+U os161-1.11/kern/include/kern/ioctl.h
+U os161-1.11/kern/include/kern/limits.h
+U os161-1.11/kern/include/kern/sfs.h
+U os161-1.11/kern/include/kern/stat.h
+U os161-1.11/kern/include/kern/types.h
+U os161-1.11/kern/include/kern/unistd.h
+cvs export: Updating os161-1.11/kern/lib
+U os161-1.11/kern/lib/array.c
+U os161-1.11/kern/lib/bitmap.c
+U os161-1.11/kern/lib/copyinout.c
+U os161-1.11/kern/lib/kgets.c
+U os161-1.11/kern/lib/kheap.c
+U os161-1.11/kern/lib/kprintf.c
+U os161-1.11/kern/lib/misc.c
+U os161-1.11/kern/lib/ntoh.c
+U os161-1.11/kern/lib/queue.c
+cvs export: Updating os161-1.11/kern/main
+U os161-1.11/kern/main/main.c
+U os161-1.11/kern/main/menu.c
+cvs export: Updating os161-1.11/kern/test
+U os161-1.11/kern/test/arraytest.c
+U os161-1.11/kern/test/bitmaptest.c
+U os161-1.11/kern/test/fstest.c
+U os161-1.11/kern/test/malloctest.c
+U os161-1.11/kern/test/nettest.c
+U os161-1.11/kern/test/queuetest.c
+U os161-1.11/kern/test/synchtest.c
+U os161-1.11/kern/test/threadtest.c
+U os161-1.11/kern/test/tt3.c
+cvs export: Updating os161-1.11/kern/thread
+U os161-1.11/kern/thread/hardclock.c
+U os161-1.11/kern/thread/scheduler.c
+U os161-1.11/kern/thread/synch.c
+U os161-1.11/kern/thread/thread.c
+cvs export: Updating os161-1.11/kern/userprog
+U os161-1.11/kern/userprog/loadelf.c
+U os161-1.11/kern/userprog/runprogram.c
+U os161-1.11/kern/userprog/uio.c
+cvs export: Updating os161-1.11/kern/vm
+U os161-1.11/kern/vm/addrspace.c
+cvs export: Updating os161-1.11/lib
+U os161-1.11/lib/Makefile
+cvs export: Updating os161-1.11/lib/crt0
+U os161-1.11/lib/crt0/Makefile
+U os161-1.11/lib/crt0/mips-crt0.S
+cvs export: Updating os161-1.11/lib/hostcompat
+U os161-1.11/lib/hostcompat/.cvsignore
+U os161-1.11/lib/hostcompat/Makefile
+U os161-1.11/lib/hostcompat/dependh.mk
+U os161-1.11/lib/hostcompat/err.c
+U os161-1.11/lib/hostcompat/host-err.h
+U os161-1.11/lib/hostcompat/hostcompat.c
+U os161-1.11/lib/hostcompat/hostcompat.h
+U os161-1.11/lib/hostcompat/time.c
+cvs export: Updating os161-1.11/lib/libc
+U os161-1.11/lib/libc/.cvsignore
+U os161-1.11/lib/libc/Makefile
+U os161-1.11/lib/libc/__assert.c
+U os161-1.11/lib/libc/__printf.c
+U os161-1.11/lib/libc/__puts.c
+U os161-1.11/lib/libc/abort.c
+U os161-1.11/lib/libc/atoi.c
+U os161-1.11/lib/libc/bzero.c
+U os161-1.11/lib/libc/callno-parse.sh
+U os161-1.11/lib/libc/depend.mk
+U os161-1.11/lib/libc/err.c
+U os161-1.11/lib/libc/errno.c
+U os161-1.11/lib/libc/exit.c
+U os161-1.11/lib/libc/getchar.c
+U os161-1.11/lib/libc/getcwd.c
+U os161-1.11/lib/libc/memcmp.c
+U os161-1.11/lib/libc/memcpy.c
+U os161-1.11/lib/libc/memmove.c
+U os161-1.11/lib/libc/memset.c
+U os161-1.11/lib/libc/mips-setjmp.S
+U os161-1.11/lib/libc/printf.c
+U os161-1.11/lib/libc/putchar.c
+U os161-1.11/lib/libc/puts.c
+U os161-1.11/lib/libc/random.c
+U os161-1.11/lib/libc/snprintf.c
+U os161-1.11/lib/libc/strcat.c
+U os161-1.11/lib/libc/strchr.c
+U os161-1.11/lib/libc/strcmp.c
+U os161-1.11/lib/libc/strcpy.c
+U os161-1.11/lib/libc/strerror.c
+U os161-1.11/lib/libc/strlen.c
+U os161-1.11/lib/libc/strrchr.c
+U os161-1.11/lib/libc/strtok.c
+U os161-1.11/lib/libc/strtok_r.c
+U os161-1.11/lib/libc/syscalls-mips.S
+U os161-1.11/lib/libc/system.c
+U os161-1.11/lib/libc/time.c
+cvs export: Updating os161-1.11/man
+U os161-1.11/man/Makefile
+cvs export: Updating os161-1.11/man/bin
+U os161-1.11/man/bin/Makefile
+U os161-1.11/man/bin/cat.html
+U os161-1.11/man/bin/cp.html
+U os161-1.11/man/bin/false.html
+U os161-1.11/man/bin/index.html
+U os161-1.11/man/bin/ln.html
+U os161-1.11/man/bin/ls.html
+U os161-1.11/man/bin/mkdir.html
+U os161-1.11/man/bin/mv.html
+U os161-1.11/man/bin/pwd.html
+U os161-1.11/man/bin/rm.html
+U os161-1.11/man/bin/rmdir.html
+U os161-1.11/man/bin/sh.html
+U os161-1.11/man/bin/sync.html
+U os161-1.11/man/bin/true.html
+cvs export: Updating os161-1.11/man/dev
+U os161-1.11/man/dev/Makefile
+U os161-1.11/man/dev/beep.html
+U os161-1.11/man/dev/con.html
+U os161-1.11/man/dev/emu.html
+U os161-1.11/man/dev/index.html
+U os161-1.11/man/dev/lamebus.html
+U os161-1.11/man/dev/lhd.html
+U os161-1.11/man/dev/lnet.html
+U os161-1.11/man/dev/lrandom.html
+U os161-1.11/man/dev/lscreen.html
+U os161-1.11/man/dev/lser.html
+U os161-1.11/man/dev/ltimer.html
+U os161-1.11/man/dev/null.html
+U os161-1.11/man/dev/pseudorand.html
+U os161-1.11/man/dev/random.html
+U os161-1.11/man/dev/rtclock.html
+cvs export: Updating os161-1.11/man/libc
+U os161-1.11/man/libc/Makefile
+U os161-1.11/man/libc/__vprintf.html
+U os161-1.11/man/libc/abort.html
+U os161-1.11/man/libc/assert.html
+U os161-1.11/man/libc/atoi.html
+U os161-1.11/man/libc/bzero.html
+U os161-1.11/man/libc/calloc.html
+U os161-1.11/man/libc/err.html
+U os161-1.11/man/libc/exit.html
+U os161-1.11/man/libc/free.html
+U os161-1.11/man/libc/getchar.html
+U os161-1.11/man/libc/getcwd.html
+U os161-1.11/man/libc/index.html
+U os161-1.11/man/libc/malloc.html
+U os161-1.11/man/libc/memcpy.html
+U os161-1.11/man/libc/memmove.html
+U os161-1.11/man/libc/memset.html
+U os161-1.11/man/libc/printf.html
+U os161-1.11/man/libc/putchar.html
+U os161-1.11/man/libc/puts.html
+U os161-1.11/man/libc/random.html
+U os161-1.11/man/libc/realloc.html
+U os161-1.11/man/libc/setjmp.html
+U os161-1.11/man/libc/snprintf.html
+U os161-1.11/man/libc/stdarg.html
+U os161-1.11/man/libc/strcat.html
+U os161-1.11/man/libc/strchr.html
+U os161-1.11/man/libc/strcmp.html
+U os161-1.11/man/libc/strcpy.html
+U os161-1.11/man/libc/strerror.html
+U os161-1.11/man/libc/strlen.html
+U os161-1.11/man/libc/strrchr.html
+U os161-1.11/man/libc/strtok.html
+U os161-1.11/man/libc/strtok_r.html
+U os161-1.11/man/libc/system.html
+U os161-1.11/man/libc/time.html
+U os161-1.11/man/libc/warn.html
+cvs export: Updating os161-1.11/man/misc
+U os161-1.11/man/misc/Makefile
+U os161-1.11/man/misc/index.html
+cvs export: Updating os161-1.11/man/sbin
+U os161-1.11/man/sbin/Makefile
+U os161-1.11/man/sbin/dumpsfs.html
+U os161-1.11/man/sbin/halt.html
+U os161-1.11/man/sbin/index.html
+U os161-1.11/man/sbin/mksfs.html
+U os161-1.11/man/sbin/poweroff.html
+U os161-1.11/man/sbin/reboot.html
+cvs export: Updating os161-1.11/man/syscall
+U os161-1.11/man/syscall/Makefile
+U os161-1.11/man/syscall/__getcwd.html
+U os161-1.11/man/syscall/__time.html
+U os161-1.11/man/syscall/_exit.html
+U os161-1.11/man/syscall/chdir.html
+U os161-1.11/man/syscall/close.html
+U os161-1.11/man/syscall/dup2.html
+U os161-1.11/man/syscall/errno.html
+U os161-1.11/man/syscall/execv.html
+U os161-1.11/man/syscall/fork.html
+U os161-1.11/man/syscall/fstat.html
+U os161-1.11/man/syscall/fsync.html
+U os161-1.11/man/syscall/ftruncate.html
+U os161-1.11/man/syscall/getdirentry.html
+U os161-1.11/man/syscall/getpid.html
+U os161-1.11/man/syscall/index.html
+U os161-1.11/man/syscall/ioctl.html
+U os161-1.11/man/syscall/link.html
+U os161-1.11/man/syscall/lseek.html
+U os161-1.11/man/syscall/lstat.html
+U os161-1.11/man/syscall/mkdir.html
+U os161-1.11/man/syscall/open.html
+U os161-1.11/man/syscall/pipe.html
+U os161-1.11/man/syscall/read.html
+U os161-1.11/man/syscall/readlink.html
+U os161-1.11/man/syscall/reboot.html
+U os161-1.11/man/syscall/remove.html
+U os161-1.11/man/syscall/rename.html
+U os161-1.11/man/syscall/rmdir.html
+U os161-1.11/man/syscall/sbrk.html
+U os161-1.11/man/syscall/stat.html
+U os161-1.11/man/syscall/symlink.html
+U os161-1.11/man/syscall/sync.html
+U os161-1.11/man/syscall/waitpid.html
+U os161-1.11/man/syscall/write.html
+cvs export: Updating os161-1.11/man/testbin
+U os161-1.11/man/testbin/Makefile
+U os161-1.11/man/testbin/add.html
+U os161-1.11/man/testbin/argtest.html
+U os161-1.11/man/testbin/badcall.html
+U os161-1.11/man/testbin/bigfile.html
+U os161-1.11/man/testbin/conman.html
+U os161-1.11/man/testbin/crash.html
+U os161-1.11/man/testbin/ctest.html
+U os161-1.11/man/testbin/dirseek.html
+U os161-1.11/man/testbin/dirtest.html
+U os161-1.11/man/testbin/f_test.html
+U os161-1.11/man/testbin/farm.html
+U os161-1.11/man/testbin/faulter.html
+U os161-1.11/man/testbin/filetest.html
+U os161-1.11/man/testbin/forkbomb.html
+U os161-1.11/man/testbin/forktest.html
+U os161-1.11/man/testbin/guzzle.html
+U os161-1.11/man/testbin/hash.html
+U os161-1.11/man/testbin/hog.html
+U os161-1.11/man/testbin/huge.html
+U os161-1.11/man/testbin/index.html
+U os161-1.11/man/testbin/kitchen.html
+U os161-1.11/man/testbin/malloctest.html
+U os161-1.11/man/testbin/matmult.html
+U os161-1.11/man/testbin/palin.html
+U os161-1.11/man/testbin/randcall.html
+U os161-1.11/man/testbin/rmdirtest.html
+U os161-1.11/man/testbin/rmtest.html
+U os161-1.11/man/testbin/sink.html
+U os161-1.11/man/testbin/sort.html
+U os161-1.11/man/testbin/sty.html
+U os161-1.11/man/testbin/tail.html
+U os161-1.11/man/testbin/tictac.html
+U os161-1.11/man/testbin/triplehuge.html
+U os161-1.11/man/testbin/triplemat.html
+U os161-1.11/man/testbin/triplesort.html
+U os161-1.11/man/testbin/userthreads.html
+cvs export: Updating os161-1.11/man/toplevel
+U os161-1.11/man/toplevel/Makefile
+U os161-1.11/man/toplevel/index.html
+cvs export: Updating os161-1.11/mk
+U os161-1.11/mk/hostprog.mk
+U os161-1.11/mk/lib.mk
+U os161-1.11/mk/man.mk
+U os161-1.11/mk/prog.mk
+cvs export: Updating os161-1.11/sbin
+U os161-1.11/sbin/Makefile
+cvs export: Updating os161-1.11/sbin/dumpsfs
+U os161-1.11/sbin/dumpsfs/.cvsignore
+U os161-1.11/sbin/dumpsfs/Makefile
+U os161-1.11/sbin/dumpsfs/depend.mk
+U os161-1.11/sbin/dumpsfs/dependh.mk
+U os161-1.11/sbin/dumpsfs/dumpsfs.c
+cvs export: Updating os161-1.11/sbin/halt
+U os161-1.11/sbin/halt/.cvsignore
+U os161-1.11/sbin/halt/Makefile
+U os161-1.11/sbin/halt/depend.mk
+U os161-1.11/sbin/halt/halt.c
+cvs export: Updating os161-1.11/sbin/mksfs
+U os161-1.11/sbin/mksfs/.cvsignore
+U os161-1.11/sbin/mksfs/Makefile
+U os161-1.11/sbin/mksfs/depend.mk
+U os161-1.11/sbin/mksfs/dependh.mk
+U os161-1.11/sbin/mksfs/disk.c
+U os161-1.11/sbin/mksfs/disk.h
+U os161-1.11/sbin/mksfs/mksfs.c
+U os161-1.11/sbin/mksfs/support.c
+U os161-1.11/sbin/mksfs/support.h
+cvs export: Updating os161-1.11/sbin/poweroff
+U os161-1.11/sbin/poweroff/.cvsignore
+U os161-1.11/sbin/poweroff/Makefile
+U os161-1.11/sbin/poweroff/depend.mk
+U os161-1.11/sbin/poweroff/poweroff.c
+cvs export: Updating os161-1.11/sbin/reboot
+U os161-1.11/sbin/reboot/.cvsignore
+U os161-1.11/sbin/reboot/Makefile
+U os161-1.11/sbin/reboot/depend.mk
+U os161-1.11/sbin/reboot/reboot.c
+cvs export: Updating os161-1.11/testbin
+U os161-1.11/testbin/Makefile
+cvs export: Updating os161-1.11/testbin/add
+U os161-1.11/testbin/add/.cvsignore
+U os161-1.11/testbin/add/Makefile
+U os161-1.11/testbin/add/add.c
+U os161-1.11/testbin/add/depend.mk
+cvs export: Updating os161-1.11/testbin/argtest
+U os161-1.11/testbin/argtest/.cvsignore
+U os161-1.11/testbin/argtest/Makefile
+U os161-1.11/testbin/argtest/argtest.c
+U os161-1.11/testbin/argtest/depend.mk
+cvs export: Updating os161-1.11/testbin/badcall
+U os161-1.11/testbin/badcall/.cvsignore
+U os161-1.11/testbin/badcall/Makefile
+U os161-1.11/testbin/badcall/bad_chdir.c
+U os161-1.11/testbin/badcall/bad_close.c
+U os161-1.11/testbin/badcall/bad_dup2.c
+U os161-1.11/testbin/badcall/bad_execv.c
+U os161-1.11/testbin/badcall/bad_fsync.c
+U os161-1.11/testbin/badcall/bad_ftruncate.c
+U os161-1.11/testbin/badcall/bad_getcwd.c
+U os161-1.11/testbin/badcall/bad_getdirentry.c
+U os161-1.11/testbin/badcall/bad_ioctl.c
+U os161-1.11/testbin/badcall/bad_link.c
+U os161-1.11/testbin/badcall/bad_lseek.c
+U os161-1.11/testbin/badcall/bad_mkdir.c
+U os161-1.11/testbin/badcall/bad_open.c
+U os161-1.11/testbin/badcall/bad_pipe.c
+U os161-1.11/testbin/badcall/bad_read.c
+U os161-1.11/testbin/badcall/bad_readlink.c
+U os161-1.11/testbin/badcall/bad_reboot.c
+U os161-1.11/testbin/badcall/bad_remove.c
+U os161-1.11/testbin/badcall/bad_rename.c
+U os161-1.11/testbin/badcall/bad_rmdir.c
+U os161-1.11/testbin/badcall/bad_sbrk.c
+U os161-1.11/testbin/badcall/bad_stat.c
+U os161-1.11/testbin/badcall/bad_symlink.c
+U os161-1.11/testbin/badcall/bad_time.c
+U os161-1.11/testbin/badcall/bad_waitpid.c
+U os161-1.11/testbin/badcall/bad_write.c
+U os161-1.11/testbin/badcall/common_buf.c
+U os161-1.11/testbin/badcall/common_fds.c
+U os161-1.11/testbin/badcall/common_path.c
+U os161-1.11/testbin/badcall/config.h
+U os161-1.11/testbin/badcall/depend.mk
+U os161-1.11/testbin/badcall/driver.c
+U os161-1.11/testbin/badcall/test.h
+cvs export: Updating os161-1.11/testbin/bigfile
+U os161-1.11/testbin/bigfile/.cvsignore
+U os161-1.11/testbin/bigfile/Makefile
+U os161-1.11/testbin/bigfile/bigfile.c
+U os161-1.11/testbin/bigfile/depend.mk
+cvs export: Updating os161-1.11/testbin/conman
+U os161-1.11/testbin/conman/.cvsignore
+U os161-1.11/testbin/conman/Makefile
+U os161-1.11/testbin/conman/conman.c
+U os161-1.11/testbin/conman/depend.mk
+cvs export: Updating os161-1.11/testbin/crash
+U os161-1.11/testbin/crash/.cvsignore
+U os161-1.11/testbin/crash/Makefile
+U os161-1.11/testbin/crash/crash.c
+U os161-1.11/testbin/crash/depend.mk
+cvs export: Updating os161-1.11/testbin/ctest
+U os161-1.11/testbin/ctest/.cvsignore
+U os161-1.11/testbin/ctest/Makefile
+U os161-1.11/testbin/ctest/ctest.c
+U os161-1.11/testbin/ctest/depend.mk
+cvs export: Updating os161-1.11/testbin/dirconc
+U os161-1.11/testbin/dirconc/.cvsignore
+U os161-1.11/testbin/dirconc/Makefile
+U os161-1.11/testbin/dirconc/depend.mk
+U os161-1.11/testbin/dirconc/dirconc.c
+cvs export: Updating os161-1.11/testbin/dirseek
+U os161-1.11/testbin/dirseek/.cvsignore
+U os161-1.11/testbin/dirseek/Makefile
+U os161-1.11/testbin/dirseek/depend.mk
+U os161-1.11/testbin/dirseek/dirseek.c
+cvs export: Updating os161-1.11/testbin/dirtest
+U os161-1.11/testbin/dirtest/.cvsignore
+U os161-1.11/testbin/dirtest/Makefile
+U os161-1.11/testbin/dirtest/depend.mk
+U os161-1.11/testbin/dirtest/dirtest.c
+cvs export: Updating os161-1.11/testbin/f_test
+U os161-1.11/testbin/f_test/.cvsignore
+U os161-1.11/testbin/f_test/Makefile
+U os161-1.11/testbin/f_test/depend.mk
+U os161-1.11/testbin/f_test/f_hdr.h
+U os161-1.11/testbin/f_test/f_read.c
+U os161-1.11/testbin/f_test/f_test.c
+U os161-1.11/testbin/f_test/f_write.c
+cvs export: Updating os161-1.11/testbin/farm
+U os161-1.11/testbin/farm/.cvsignore
+U os161-1.11/testbin/farm/Makefile
+U os161-1.11/testbin/farm/depend.mk
+U os161-1.11/testbin/farm/farm.c
+cvs export: Updating os161-1.11/testbin/faulter
+U os161-1.11/testbin/faulter/.cvsignore
+U os161-1.11/testbin/faulter/Makefile
+U os161-1.11/testbin/faulter/depend.mk
+U os161-1.11/testbin/faulter/faulter.c
+cvs export: Updating os161-1.11/testbin/filetest
+U os161-1.11/testbin/filetest/.cvsignore
+U os161-1.11/testbin/filetest/Makefile
+U os161-1.11/testbin/filetest/depend.mk
+U os161-1.11/testbin/filetest/filetest.c
+cvs export: Updating os161-1.11/testbin/forkbomb
+U os161-1.11/testbin/forkbomb/.cvsignore
+U os161-1.11/testbin/forkbomb/Makefile
+U os161-1.11/testbin/forkbomb/depend.mk
+U os161-1.11/testbin/forkbomb/forkbomb.c
+cvs export: Updating os161-1.11/testbin/forktest
+U os161-1.11/testbin/forktest/.cvsignore
+U os161-1.11/testbin/forktest/Makefile
+U os161-1.11/testbin/forktest/depend.mk
+U os161-1.11/testbin/forktest/forktest.c
+cvs export: Updating os161-1.11/testbin/guzzle
+U os161-1.11/testbin/guzzle/.cvsignore
+U os161-1.11/testbin/guzzle/Makefile
+U os161-1.11/testbin/guzzle/depend.mk
+U os161-1.11/testbin/guzzle/guzzle.c
+cvs export: Updating os161-1.11/testbin/hash
+U os161-1.11/testbin/hash/.cvsignore
+U os161-1.11/testbin/hash/Makefile
+U os161-1.11/testbin/hash/depend.mk
+U os161-1.11/testbin/hash/dependh.mk
+U os161-1.11/testbin/hash/hash.c
+cvs export: Updating os161-1.11/testbin/hog
+U os161-1.11/testbin/hog/.cvsignore
+U os161-1.11/testbin/hog/Makefile
+U os161-1.11/testbin/hog/depend.mk
+U os161-1.11/testbin/hog/hog.c
+cvs export: Updating os161-1.11/testbin/huge
+U os161-1.11/testbin/huge/.cvsignore
+U os161-1.11/testbin/huge/Makefile
+U os161-1.11/testbin/huge/depend.mk
+U os161-1.11/testbin/huge/huge.c
+cvs export: Updating os161-1.11/testbin/kitchen
+U os161-1.11/testbin/kitchen/.cvsignore
+U os161-1.11/testbin/kitchen/Makefile
+U os161-1.11/testbin/kitchen/depend.mk
+U os161-1.11/testbin/kitchen/kitchen.c
+cvs export: Updating os161-1.11/testbin/malloctest
+U os161-1.11/testbin/malloctest/.cvsignore
+U os161-1.11/testbin/malloctest/Makefile
+U os161-1.11/testbin/malloctest/depend.mk
+U os161-1.11/testbin/malloctest/malloctest.c
+cvs export: Updating os161-1.11/testbin/matmult
+U os161-1.11/testbin/matmult/.cvsignore
+U os161-1.11/testbin/matmult/Makefile
+U os161-1.11/testbin/matmult/depend.mk
+U os161-1.11/testbin/matmult/matmult-orig.c
+U os161-1.11/testbin/matmult/matmult.c
+cvs export: Updating os161-1.11/testbin/palin
+U os161-1.11/testbin/palin/.cvsignore
+U os161-1.11/testbin/palin/Makefile
+U os161-1.11/testbin/palin/depend.mk
+U os161-1.11/testbin/palin/palin.c
+cvs export: Updating os161-1.11/testbin/parallelvm
+U os161-1.11/testbin/parallelvm/.cvsignore
+U os161-1.11/testbin/parallelvm/Makefile
+U os161-1.11/testbin/parallelvm/depend.mk
+U os161-1.11/testbin/parallelvm/parallelvm.c
+cvs export: Updating os161-1.11/testbin/randcall
+U os161-1.11/testbin/randcall/.cvsignore
+U os161-1.11/testbin/randcall/Makefile
+U os161-1.11/testbin/randcall/callspecs.txt
+U os161-1.11/testbin/randcall/depend.mk
+U os161-1.11/testbin/randcall/extern.h
+U os161-1.11/testbin/randcall/gencalls.sh
+U os161-1.11/testbin/randcall/main.c
+cvs export: Updating os161-1.11/testbin/rmdirtest
+U os161-1.11/testbin/rmdirtest/.cvsignore
+U os161-1.11/testbin/rmdirtest/Makefile
+U os161-1.11/testbin/rmdirtest/depend.mk
+U os161-1.11/testbin/rmdirtest/rmdirtest.c
+cvs export: Updating os161-1.11/testbin/rmtest
+U os161-1.11/testbin/rmtest/.cvsignore
+U os161-1.11/testbin/rmtest/Makefile
+U os161-1.11/testbin/rmtest/depend.mk
+U os161-1.11/testbin/rmtest/rmtest.c
+cvs export: Updating os161-1.11/testbin/sink
+U os161-1.11/testbin/sink/.cvsignore
+U os161-1.11/testbin/sink/Makefile
+U os161-1.11/testbin/sink/depend.mk
+U os161-1.11/testbin/sink/sink.c
+cvs export: Updating os161-1.11/testbin/sort
+U os161-1.11/testbin/sort/.cvsignore
+U os161-1.11/testbin/sort/Makefile
+U os161-1.11/testbin/sort/depend.mk
+U os161-1.11/testbin/sort/sort.c
+cvs export: Updating os161-1.11/testbin/sty
+U os161-1.11/testbin/sty/.cvsignore
+U os161-1.11/testbin/sty/Makefile
+U os161-1.11/testbin/sty/depend.mk
+U os161-1.11/testbin/sty/sty.c
+cvs export: Updating os161-1.11/testbin/tail
+U os161-1.11/testbin/tail/.cvsignore
+U os161-1.11/testbin/tail/Makefile
+U os161-1.11/testbin/tail/depend.mk
+U os161-1.11/testbin/tail/tail.c
+cvs export: Updating os161-1.11/testbin/tictac
+U os161-1.11/testbin/tictac/.cvsignore
+U os161-1.11/testbin/tictac/Makefile
+U os161-1.11/testbin/tictac/depend.mk
+U os161-1.11/testbin/tictac/tictac.c
+cvs export: Updating os161-1.11/testbin/triplehuge
+U os161-1.11/testbin/triplehuge/.cvsignore
+U os161-1.11/testbin/triplehuge/Makefile
+U os161-1.11/testbin/triplehuge/depend.mk
+U os161-1.11/testbin/triplehuge/triple.c
+U os161-1.11/testbin/triplehuge/triple.h
+U os161-1.11/testbin/triplehuge/triplehuge.c
+cvs export: Updating os161-1.11/testbin/triplemat
+U os161-1.11/testbin/triplemat/.cvsignore
+U os161-1.11/testbin/triplemat/Makefile
+U os161-1.11/testbin/triplemat/depend.mk
+U os161-1.11/testbin/triplemat/triplemat.c
+cvs export: Updating os161-1.11/testbin/triplesort
+U os161-1.11/testbin/triplesort/.cvsignore
+U os161-1.11/testbin/triplesort/Makefile
+U os161-1.11/testbin/triplesort/depend.mk
+U os161-1.11/testbin/triplesort/triplesort.c
+cvs export: Updating os161-1.11/testbin/userthreads
+U os161-1.11/testbin/userthreads/.cvsignore
+U os161-1.11/testbin/userthreads/Makefile
+U os161-1.11/testbin/userthreads/depend.mk
+U os161-1.11/testbin/userthreads/userthreads.c
+bash-4.2$ t[Krat[K[K[Ktar cf - os161-1.11 | gzip -c > ox[Ks161.[K-1.11.tar.gz
+bash-4.2$ ls
+code-reading.txt  gdb.script	   os161-1.11	      run.script
+cvs-use.script	  newbuild.script  os161-1.11.tar.gz
+bash-4.2$ rm -rf os161-1.11
+bash-4.2$ cd ..
+bash-4.2$ rar[K[K[Ktar cf - asst=[K0 | gzip -c > dthyne-ga[K[Kmgayhary[Kt-asst0.tar.gz
+bash-4.2$ ls
+asst0  cvsroot	dthyne-mgayhart-asst0.tar.gz  os161-1.11  os161-1.11.tar.gz  root
+bash-4.2$ exit
+
+Script done on Thu 13 Sep 2018 07:00:41 PM EDT

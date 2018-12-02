@@ -1,0 +1,486 @@
+Index: os161-1.11/kern/asst1/stoplight.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/asst1/stoplight.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+20a21,27
+> #include <synch.h>
+> 
+> /*
+>  * Number of cars created.
+>  */
+> 
+> #define NCARS 20
+29,31c36,37
+< /*
+<  * Number of cars created.
+<  */
+---
+> int thread_completions;
+> struct lock *mutex;
+33c39,43
+< #define NCARS 20
+---
+> struct lock *NW_in;
+> struct lock *NW;
+> 
+> struct lock *NE_in;
+> struct lock *NE;
+34a45,52
+> struct lock *SE_in;
+> struct lock *SE;
+> 
+> struct lock *SW_in;
+> struct lock *SW;
+> 
+> char *directions[] = {"North", "East", "South", "West"};
+> char *turns[] = {"taking a right", "going straight", "taking a left"};
+65,70c83,105
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+<         
+<         (void) cardirection;
+<         (void) carnumber;
+---
+> 
+> 	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[1]);
+> 
+> 	if(cardirection == 0){
+> 		lock_acquire(SW);
+>                 lock_dual_release(NW, SW_in);
+> 		lock_release(SW);
+> 	}
+> 	else if(cardirection == 1){
+> 		lock_acquire(NW);
+> 		lock_dual_release(NE, NW_in);
+> 		lock_release(NW);
+> 	}
+> 	else if(cardirection == 2){
+>                 lock_acquire(NE);
+>                 lock_dual_release(SE, NE_in);
+> 		lock_release(NE);
+> 	}
+> 	else{
+>                 lock_acquire(SE);
+>                 lock_dual_release(SW, SE_in);
+> 		lock_release(SE);
+> 	} 
+96,98d130
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+100,101c132,161
+<         (void) cardirection;
+<         (void) carnumber;
+---
+> 	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[2]);
+> 
+> 	if(cardirection == 0){
+>                 lock_acquire(SW);
+>                 lock_dual_release_acquire(NW, SW_in,SE_in);
+> 		lock_acquire(SE);
+> 		lock_dual_release(SW, SE_in);
+>                 lock_release(SE);
+>         }
+>         else if(cardirection == 1){
+>                 lock_acquire(NW);
+>                 lock_dual_release_acquire(NE, NW_in, SW_in);
+>                 lock_acquire(SW);
+>                 lock_dual_release(NW, SW_in);
+>                 lock_release(SW);
+> 	}
+>         else if(cardirection == 2){
+>                 lock_acquire(NE);
+>                 lock_dual_release_acquire(SE, NE_in, NW_in);
+>                 lock_acquire(NW);
+>                 lock_dual_release(NE, NW_in);
+>                 lock_release(NW);
+> 	}
+>         else{
+>                 lock_acquire(SE);
+>                 lock_dual_release_acquire(SW, SE_in, NE_in);
+>                 lock_acquire(NE);
+>                 lock_dual_release(SE, NE_in);
+>                 lock_release(NE);
+> 	}
+127,129c187,200
+<         /*
+<          * Avoid unused variable warnings.
+<          */
+---
+> 	kprintf("Car Number: %ld has entered the intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[0]);
+> 
+> 	if(cardirection == 0){
+> 		lock_release(NW);
+>         }
+>         else if(cardirection == 1){
+>                 lock_release(NE);
+>         }
+>         else if(cardirection == 2){
+>                 lock_release(SE);
+>         }
+>         else{
+>                 lock_release(SW);
+>         }
+131,132d201
+<         (void) cardirection;
+<         (void) carnumber;
+136a206,207
+>  * n %d.\n", carnumber, cardirection);
+>  *
+161c232,245
+<         int cardirection;
+---
+> 	/*
+> 	 * from North: 0
+> 	 * from East: 1
+> 	 * from South: 2
+> 	 * from West: 3
+>  	*/
+> 	unsigned long int cardirection;
+> 	
+> 	/*
+>  	* right turn: 0
+>  	* stright: 1
+> 	* left turn: 2
+> 	*/
+> 	unsigned long int carturn;
+168,171d251
+<         (void) carnumber;
+< 	(void) gostraight;
+< 	(void) turnleft;
+< 	(void) turnright;
+174c254
+<          * cardirection is set randomly.
+---
+>          * cardirection and carturn set randomly.
+177c257,355
+<         cardirection = random() % 4;
+---
+>         cardirection = (unsigned long int)(random() % 4);
+> 	carturn = (unsigned long int)(random() % 3);
+> 
+> 	kprintf("Car Number: %ld approaching intersection from the %s and is %s.\n", carnumber, directions[cardirection], turns[carturn]);
+> 
+> 	/*
+>  	* Filter by approach direction and intended turn type to call correct function for each car
+>  	*/
+> 	if(cardirection == 0){
+> 		if(carturn == 0){
+> 			lock_acquire_in(NW_in, NW, NULL);
+> 			lock_release(NW_in);
+> 
+> 			turnright(cardirection, carnumber);
+> 		}
+> 		else if(carturn == 1){
+>                         lock_acquire_in(NW_in, NW, SW_in);
+> 			lock_release(NW_in);
+> 
+> 			gostraight(cardirection, carnumber);
+> 		}
+> 		else{
+>                         lock_acquire_in(NW_in, NW, SW_in);
+> 			lock_release(NW_in);
+> 
+> 			turnleft(cardirection, carnumber);
+> 		}
+> 	}
+> 	else if(cardirection == 1){
+> 		if(carturn == 0){
+> 			lock_acquire_in(NE_in, NE, NULL);
+> 			lock_release(NE_in);
+> 
+> 			turnright(cardirection, carnumber);
+> 		}
+> 		else if(carturn == 1){
+> 			lock_acquire_in(NE_in, NE, NW_in);
+> 			lock_release(NE_in);
+> 
+> 			gostraight(cardirection, carnumber);
+> 		}
+> 		else{
+> 			lock_acquire_in(NE_in, NE, NW_in);
+> 			lock_release(NE_in);
+> 
+> 			turnleft(cardirection, carnumber);
+> 		}
+> 	}
+> 	else if(cardirection == 2){
+> 		if(carturn == 0){
+> 			lock_acquire_in(SE_in, SE, NULL);
+> 			lock_release(SE_in);
+> 
+> 			turnright(cardirection, carnumber);
+> 		}
+> 		else if(carturn == 1){
+> 			lock_acquire_in(SE_in, SE, NE_in);
+> 			lock_release(SE_in);
+> 
+> 			gostraight(cardirection, carnumber);
+> 		}
+> 		else{
+> 			lock_acquire_in(SE_in, SE, NE_in);
+> 			lock_release(SE_in);
+> 
+> 			turnleft(cardirection, carnumber);
+> 		}
+> 	}
+> 	else{
+> 		if(carturn == 0){
+> 			lock_acquire_in(SW_in, SW, NULL);
+> 			lock_release(SW_in);
+> 
+> 			turnright(cardirection, carnumber);
+> 		}
+> 		else if(carturn == 1){
+> 			lock_acquire_in(SW_in, SW, SE_in);
+> 			lock_release(SW_in);
+> 
+> 			gostraight(cardirection, carnumber);
+> 		}
+> 		else{
+> 			lock_acquire_in(SW_in, SW, SE_in);
+> 			lock_release(SW_in);
+> 
+> 			turnleft(cardirection, carnumber);
+> 		}
+> 	}
+> 
+> 	/*
+>  	* Avoid Race condidionts to edit global variable counting completed threads
+>  	*/
+> 	lock_acquire(mutex);
+> 	thread_completions++;
+> 	lock_release(mutex);
+> 
+> 	kprintf("Car Number: %ld has exited successfully coming from the %s and %s.\n", carnumber, directions[cardirection], turns[carturn]);
+> 
+> 	thread_exit();
+199a378
+> 
+208a388,406
+> 	/*
+> 	 * Initialize Locks
+>  	*/
+> 
+> 	thread_completions = 0;
+> 	mutex = lock_create("Mutex for editing global variables");
+> 
+> 	NW_in = lock_create("NW lock from inside intersection");
+> 	NW = lock_create("NW quadrant lock");
+> 	
+> 	NE_in = lock_create("NE lock from inside intersection");
+> 	NE = lock_create("NE quadrant lock");
+> 	
+> 	SE_in = lock_create("SE lock from inside intersection");
+> 	SE = lock_create("SE quadrant lock");
+> 	
+> 	SW_in = lock_create("SW lock from inside intersection");
+> 	SW = lock_create("SW quadrant lock");
+> 
+215,220c413,419
+<                 error = thread_fork("approachintersection thread",
+<                                     NULL,
+<                                     index,
+<                                     approachintersection,
+<                                     NULL
+<                                     );
+---
+>                 error = thread_fork(
+> 			"approachintersection thread",
+> 			NULL,
+> 			index,
+> 			approachintersection,
+> 			NULL
+> 		);
+225,230c424,428
+< 
+<                 if (error) {
+<                         
+<                         panic("approachintersection: thread_fork failed: %s\n",
+<                               strerror(error)
+<                               );
+---
+>                 if(error){
+>                         panic(
+> 				"approachintersection: thread_fork failed: %s\n",
+> 				strerror(error)
+> 			);
+233a432,440
+> 	/*
+>  	* Wrap up parent thread.
+>  	*/
+> 
+> 	while(thread_completions < NCARS) {
+> 		//for some reason runtime is faster without
+> 		//thread_yield();
+> 	}
+> 
+235a443
+> 
+Index: os161-1.11/kern/include/synch.h
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/include/synch.h,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+53d52
+< 	// add what you need here
+54a54,55
+> 	int *available;
+> 	struct thread *holder;
+58a60,62
+> void	     lock_dual_acquire(struct lock *lock1, struct lock *lock2);
+> void 	     lock_triple_acquire(struct lock *lock1, struct lock *lock2, struct lock *lock3); 
+> void	     lock_acquire_in(struct lock *lock1, struct lock *lock2, struct lock *lock3);
+59a64,65
+> void	     lock_dual_release(struct lock *lock1, struct lock *lock2);
+> void	     lock_dual_release_acquire(struct lock *lock1, struct lock *lock2, struct lock *lock3);
+Index: os161-1.11/kern/thread/synch.c
+===================================================================
+RCS file: /home/dthyne/os161/cvsroot/os161-1.11/kern/thread/synch.c,v
+retrieving revision 1.1.1.1
+retrieving revision 1.2
+diff -r1.1.1.1 -r1.2
+116,117c116,118
+< 	
+< 	// add stuff here as needed
+---
+> 
+> 	lock->available = 1;
+> 	lock->holder = NULL;
+127,128c128,129
+< 	// add stuff here as needed
+< 	
+---
+> 	kfree(lock->available);
+> 	kfree(lock->holder);	
+136c137,196
+< 	// Write this
+---
+> 	int spl;
+> 	spl = splhigh();
+> 	while(lock->available == 0){
+> 		thread_sleep(lock);
+> 	}
+> 	assert(lock->available == 1);
+> 	lock->available = 0;
+> 	lock->holder = curthread;
+> 	splx(spl);
+> }
+> 
+> /*
+>  * Acquires lock1 and lock2 atomically
+>  */
+> void
+> lock_dual_acquire(struct lock *lock1, struct lock *lock2)
+> {
+> 	int spl;
+> 	spl = splhigh();
+> 	lock_acquire(lock1);
+> 	lock_acquire(lock2);
+> 	splx(spl);
+> }
+> 
+> /*
+>  * Acquires lock1, lock2, and lock3 atomically
+>  */
+> void
+> lock_triple_acquire(struct lock *lock1, struct lock *lock2, struct lock *lock3)
+> {
+> 	int spl;
+> 	spl = splhigh();
+> 	lock_acquire(lock1);
+> 	lock_acquire(lock2);
+> 	lock_acquire(lock3);
+> 	splx(spl);
+> }
+> 
+> /*
+>  * Checks and sleeps if car in intersections holds lock (lock1) showing intention
+>  * to acquire lock2
+>  * 
+>  * Allows for optional atomic acquition of lock3
+>  */
+> void
+> lock_acquire_in(struct lock *lock1, struct lock *lock2, struct lock *lock3)
+> {
+> 	int spl;
+> 	spl = splhigh();
+> 
+> in:
+> 	lock_acquire(lock1);
+> 	if(lock2->available == 0){
+> 		lock_release(lock1);
+> 		thread_sleep(lock2);
+> 		goto in;
+> 	}	
+> 	else{
+> 		lock_acquire(lock2);
+> 	}
+138c198,202
+< 	(void)lock;  // suppress warning until code gets written
+---
+> 	if(lock3 != NULL){
+> 		lock_acquire(lock3);
+> 	}
+> 
+> 	splx(spl);
+144c208,218
+< 	// Write this
+---
+> 	int spl;
+> 	assert(lock != NULL);
+> 	spl = splhigh();
+> 	if(lock_do_i_hold(lock) == 1){
+> 		lock->available = 1;
+> 		lock->holder = NULL;
+> 		assert(lock->available == 1);
+> 		thread_wakeup(lock);
+> 	}
+> 	splx(spl);
+> }
+146c220,244
+< 	(void)lock;  // suppress warning until code gets written
+---
+> /*
+>  * Releases lock1 and lock2 atomically
+>  */
+> void
+> lock_dual_release(struct lock *lock1, struct lock *lock2)
+> {
+> 	int spl;
+> 	spl = splhigh();
+> 	lock_release(lock1);
+> 	lock_release(lock2);
+> 	splx(spl);
+> }
+> 
+> /*
+>  * Releases lock1 and lock2 and acquires lock 3 atomically
+>  */
+> void
+> lock_dual_release_acquire(struct lock *lock1, struct lock *lock2, struct lock *lock3)
+> {
+> 	int spl;
+> 	spl = splhigh();
+> 	lock_release(lock1);
+> 	lock_release(lock2);
+> 	lock_acquire(lock3);
+> 	splx(spl);	
+152,156c250,256
+< 	// Write this
+< 
+< 	(void)lock;  // suppress warning until code gets written
+< 
+< 	return 1;    // dummy until code gets written
+---
+> 	assert(lock != NULL);
+> 	if(lock->holder == curthread){
+> 		return 1;
+> 	}
+> 	else{
+> 		return 0;
+> 	}

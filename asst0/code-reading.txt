@@ -1,0 +1,29 @@
+﻿Matthew Gayhart - G00915569
+Devon Thyne - G00863849
+
+1. $29 is the stack pointer. This can be found in the asmdefs.h file under kern/arch/mips/include/ all of the registers definitions can be found here. 
+
+2. Then only bus supported by OS/161 is LAMEbus. in the bus.h file it is written that the only supported bus is LAMEbus, and that if others were supported that the bus file would be far more complicated
+
+3. The difference between splhigh and spl0 is that splhigh sets priority level to the highest value, and disables all interrupts, while spl0 enables all interrupts by setting the priority level to 0
+
+4. Some of the details which would make a function “machine dependent” would be Kernal boot up, Trap handler, TLB handling routines, interrupt handler, etc. The separation is necessary because these functions may not work for all architectures.
+
+5. splx returns the previous priority level. By looking at spl.c and finding the splx function, tracing through the function shows that this sets the priority level to the passed spl, then updates the current spl and returns the previous spl.
+
+6. The highest interrupt level is 15, this can be found in spl.h where the constant SPL_HIGH is set. This can be found at: ~/os161/os161-1.11/kern/arch/mips/include/
+
+7. Hardclock interrupts are generated at 100HZ unless OPT_SYNCHPROBS is defined, in which case they are generated at 10000HZ. This can be found in ~/os161/os161-1.11/kern/include/clock.h 
+
+8. OS/161 pids are standard 32bit integers. Given that the pid is a signed integer, theoretically you could uniquely identify 2^31 different processes. Also given the nature of the queue object, which again accepts a signed integer as its size parameter, it follows that you could theoretically queue 2^31 different processes. Realistically the system would not have the ability to support this amount of processes, and in the file conf.arch it is mentioned that currently the system has a “stupid” vm that can handle about 1 user level program.
+
+9. Reboot’s system call number is 8. These values are not available to the userspace programs. The user space programs have access to functions that can perform system calls, but the kernel is what has access to the syscall values.
+
+10. The purpose of copyin and copyout is to copy a block of memory either to or from user-level to the kernel level, and vice versa. They protect the user from reading or writing critical kernel memory by using memcpy. These functions could be used to move data in communication between user level and kernel level processes.
+
+11. No you have to initialize the scheduler first, because the initialization of threads involves adding threads to the schedule. This cannot be done in the reverse order.
+
+12. The states a thread can be in are: running, ready, sleeping, and zombie. Zombie threads are cleaned up in the function exorcise(). This function and the list of thread states can be found in: ~/os161/os161-1.11/kern/thread/thread.c
+
+13. The function thread_sleep() puts threads to sleep. This function could be used in the event that there is a more critical thread to be run, that is currently waiting for the soon to be sleeping thread to complete. 
+

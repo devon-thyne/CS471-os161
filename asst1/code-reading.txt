@@ -1,0 +1,60 @@
+Matthew Gayhart
+Devon Thyne
+
+1. When a thread calls thread_exit(), the first thing that is done is to check that the 
+stack did not overflow, by looking for the magic numbers that are put in place at the 
+bottom of the stack at thread creation. Then the address of the thread is checked and 
+the thread has its address set to null and removed. Following it checks if this is the 
+last surviving thread and then begins a context switch in the case that the thread
+is a zombie. 
+When a thread sleeps first it is checked if you are in an interrupt handler, as you can 
+not sleep a thread there. Then the current thread's address is set to the sleepaddr, to
+put the thread to sleep and when thread_wakeup() is called it will only allow the thread
+to continue if it is called with the same address that is in t_sleepaddr. A context switch
+is begun passing S_SLEEP, which is the sleeping state of a thread, and finally the thread 
+sleepaddr is set to NULL.
+
+2. The functions that handle a context switch are mi_switch(), and md_switch().
+
+3. If a thread is in S_READY, the thread is ready to be run, and can be made runnable,
+by make_runnable(). 
+A thread in S_RUN is the thread currently being executed
+A thread in S_SLEEP is a thread ready to be put to sleep and added to the sleep list
+A thread in S_ZOMB is a thread to be made a zombie and must be exorcized.
+
+4. Turning off the interrupts is a means for which to ensure that a section of code
+can be run atomically, and thus not be preempted. This is handled by using the 
+spl() family of functions, which is Set Priority Level. This can be set to high to turn
+off interrupts and then set back to a normal or original priority level to return the function
+to normal. It is important to turn off interrupts in the thread code because there can be
+issues in the code if a thread is interrupted during important actions or code sections,
+for example, if a thread is interrupted in the process of sleeping it can be possible 
+for the thread to sleep forever.
+
+5. When a thread wakes a thread it calls thread_wakeup() passing an address to the function
+when a thread is attempted to wake, it must have the same sleepaddr as the address passed
+to the thread_wakeup() function. When this is the case the thread is sent to the 
+make_runnable() function to allow the awoken thread to run again. 
+
+6. The function that is actually responsible for selecting the next thread to run is
+scheduler()
+
+7. The function picks the next thread, by removing the head of the run queue, and returning
+the thread in that place as the next thread to run. It uses a round-robin queue and no 
+priorities.
+
+8. The hardware timer calls hardclock() HZ times a second, and the function calls 
+thread_yeild() which will cause a context switch, upon a timer interrupt.
+
+9. thread_sleep() is used in the implementation of Semaphores, in the P function, in 
+which if the Semaphore value is equal to 0 it will have the thread sleep upon reaching
+the semaphore. thread_wakeup() is used to wake up threads when the semaphore value
+is greater than 0. The argument to thread_sleep() is the address of the semaphore, so that
+the thread is put to sleep with the address of the given semaphore so when it is attempted
+to wake the thread using thread_wakeup() it is possible to only wake the threads that are 
+waiting on the given semaphore.
+
+10. os161 has lock_do_i_hold(), but not lock_get_holder(), because the locks need to be
+released by the same thread that acquired the lock, so there is not a way to get at the
+thread that has the lock, the other threads must wait until the original thread releases
+the lock.

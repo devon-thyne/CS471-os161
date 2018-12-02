@@ -1,0 +1,59 @@
+head	1.1;
+branch	1.1.1;
+access;
+symbols
+	asst2-begin:1.1.1.1
+	asst1-end:1.1.1.1
+	asst1-begin:1.1.1.1
+	asst0-end:1.1.1.1
+	os161-1_11:1.1.1.1
+	os161:1.1.1;
+locks; strict;
+comment	@ * @;
+
+
+1.1
+date	2018.09.12.20.18.56;	author dthyne;	state Exp;
+branches
+	1.1.1.1;
+next	;
+
+1.1.1.1
+date	2018.09.12.20.18.56;	author dthyne;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+
+1.1
+log
+@Initial revision
+@
+text
+@#ifndef _GENERIC_BEEP_H_
+#define _GENERIC_BEEP_H_
+
+/*
+ * The device info for the generic MI beep device - a function
+ * to call and a context pointer for it.
+ */
+
+struct beep_softc {
+	void *bs_devdata;
+	void (*bs_beep)(void *devdata);
+};
+
+#endif /* _GENERIC_BEEP_H_ */
+@
+
+
+1.1.1.1
+log
+@Import of os161
+@
+text
+@@

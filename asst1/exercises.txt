@@ -1,0 +1,18 @@
+Matthew Gayhart
+Devon Thyne
+
+1. If the residents of Podunk follow the first arrive, first exit method for handling the 
+intersection, this intersection would be handled by using a queue, tracking the order
+in which cars arrive at the intersection. The car at the head of the queue would acquire
+the lock to the intersection, ensuring that no other car could proceed through the 
+intersection while they were, once out they would release the lock allowing the next car
+to enter the intersection. This method is suboptimal because, while it avoids any issues
+with collisions or issues with starvation or deadlock, it is not the most effective method
+as only one car can be moving at a time, while it is easily possible for all directions 
+to make a right turn simultaneously. This one at a time first come method is safe, but 
+far slower than ideal.
+
+2. One instance of car behavior that could result in deadlock would be in the event that
+there were four cars arriving at the same time, one from each direction, all wanting to 
+make a left turn, all would begin this turn and be blocked by one of the other cars in 
+the intersection, all unable to move. 
