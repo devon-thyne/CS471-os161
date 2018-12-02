@@ -87,6 +87,7 @@ mips_syscall(struct trapframe *tf)
 		#ifdef PROJ2_DEBUG
 		kprintf("syscall %d: SYS_getpid\n", callno);
 		#endif //DEBUG
+		err = sys_getpid(&retval);
 		break;
 
 	    case SYS_fork:

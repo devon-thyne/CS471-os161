@@ -7,7 +7,7 @@
  * CS 471 - 001
  */
 
-#include <kern/types.h>
+#include <types.h>
 #include <syscall.h>
 #include <thread.h>
 #include <curthread.h>
@@ -20,7 +20,7 @@
 int
 sys_getpid(pid_t *return_pid)
 {
-	*return_pid = curthread->pid;
+	*return_pid = curthread->t_pid;
 	return 0;
 }
 
