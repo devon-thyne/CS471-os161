@@ -15,6 +15,10 @@
 #include <vfs.h>
 #include <test.h>
 
+//custom include files
+
+#include "proj2_debug.h"
+
 /*
  * Load program "progname" and start running it in usermode.
  * Does not return except on error.
@@ -28,11 +32,19 @@ runprogram(char *progname)
 	vaddr_t entrypoint, stackptr;
 	int result;
 
+	#ifdef PROJ2_DEBUG
+        kprintf("runprogram.c pre-vfs_open()\n");
+        #endif
+
 	/* Open the file. */
 	result = vfs_open(progname, O_RDONLY, &v);
 	if (result) {
 		return result;
 	}
+
+	#ifdef PROJ2_DEBUG
+        kprintf("runprogram.c post-vfs_open()\n");
+        #endif
 
 	/* We should be a new thread. */
 	assert(curthread->t_vmspace == NULL);
@@ -55,8 +67,16 @@ runprogram(char *progname)
 		return result;
 	}
 
+	#ifdef PROJ2_DEBUG
+        kprintf("runprogram.c post-load_elf()\n");
+        #endif
+
 	/* Done with the file now. */
 	vfs_close(v);
+
+	#ifdef PROJ2_DEBUG
+        kprintf("runprogram.c pre-as_define_stack()\n");
+        #endif
 
 	/* Define the user stack in the address space */
 	result = as_define_stack(curthread->t_vmspace, &stackptr);
@@ -64,6 +84,10 @@ runprogram(char *progname)
 		/* thread_exit destroys curthread->t_vmspace */
 		return result;
 	}
+
+	#ifdef PROJ2_DEBUG
+        kprintf("runprogram.c pre-md_usermode()\n");
+        #endif
 
 	/* Warp to user mode. */
 	md_usermode(0 /*argc*/, NULL /*userspace addr of argv*/,

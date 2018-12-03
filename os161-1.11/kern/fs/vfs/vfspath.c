@@ -10,6 +10,10 @@
 #include <vnode.h>
 #include <lib.h>
 
+//custom include files
+
+#include "proj2_debug.h"
+
 
 /* Does most of the work for open(). */
 int
@@ -38,18 +42,35 @@ vfs_open(char *path, int openflags, struct vnode **ret)
 		char name[NAME_MAX+1];
 		struct vnode *dir;
 		int excl = (openflags & O_EXCL)!=0;
+
+		#ifdef PROJ2_DEBUG
+        	kprintf("vfspath.c in vfs_open() pre vfs_lookparent()\n");
+        	#endif
 		
 		result = vfs_lookparent(path, &dir, name, sizeof(name));
 		if (result) {
 			return result;
 		}
 
+		#ifdef PROJ2_DEBUG
+                kprintf("vfspath.c in vfs_open() post vfs_lookparent()\n");
+                #endif
+
 		result = VOP_CREAT(dir, name, excl, &vn);
 
 		VOP_DECREF(dir);
 	}
 	else {
+		#ifdef PROJ2_DEBUG
+                kprintf("vfspath.c in vfs_open() pre vfs_lookup()\n");
+                #endif
+
 		result = vfs_lookup(path, &vn);
+
+		#ifdef PROJ2_DEBUG
+                kprintf("vfspath.c in vfs_open() post vfs_lookup()\n");
+                #endif
+
 	}
 
 	if (result) {
@@ -104,7 +125,16 @@ vfs_close(struct vnode *vn)
 	 */
 
 	VOP_DECOPEN(vn);
+
+	#ifdef PROJ2_DEBUG
+        kprintf("vfspath.c in vfs_close() post VOP_DECOPEN()\n");
+        #endif
+
 	VOP_DECREF(vn);
+
+	#ifdef PROJ2_DEBUG
+        kprintf("vfspath.c in vfs_close() post VOP_DECREF()\n");
+        #endif
 }
 
 /* Does most of the work for remove(). */

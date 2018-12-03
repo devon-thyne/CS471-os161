@@ -7,6 +7,10 @@
 #include <synch.h>
 #include <vnode.h>
 
+//custom include files
+
+#include "proj2_debug.h"
+
 /*
  * Initialize an abstract vnode.
  * Invoked by VOP_INIT.
@@ -78,6 +82,11 @@ vnode_decref(struct vnode *vn)
 	assert(vn!=NULL);
 
 	lock_acquire(vn->vn_countlock);
+
+	#ifdef PROJ2_DEBUG
+        kprintf("vnode.c in vnode_decref() post lock_acquire()\n");
+        #endif
+
 	assert(vn->vn_refcount>0);
 	if (vn->vn_refcount>1) {
 		vn->vn_refcount--;
@@ -87,14 +96,27 @@ vnode_decref(struct vnode *vn)
 	}
 	lock_release(vn->vn_countlock);
 
+        #ifdef PROJ2_DEBUG
+        kprintf("vnode.c in vnode_decref() post lock_release(), actually_do_it = %d\n", actually_do_it);
+        #endif
+
 	if (actually_do_it) {
 		result = VOP_RECLAIM(vn);
+
+		#ifdef PROJ2_DEBUG
+        	kprintf("vnode.c in vnode_decref() post VOP_RECLAIM()\n");
+        	#endif	
+
 		if (result != 0 && result != EBUSY) {
 			// XXX: lame.
 			kprintf("vfs: Warning: VOP_RECLAIM: %s\n",
 				strerror(result));
 		}
 	}
+
+	#ifdef PROJ2_DEBUG
+        kprintf("vnode.c in vnode_decref() post actually_do_it()\n");
+        #endif
 }
 
 /*

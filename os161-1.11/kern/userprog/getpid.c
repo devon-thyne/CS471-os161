@@ -20,7 +20,7 @@
 int
 sys_getpid(pid_t *return_pid)
 {
-	*return_pid = curthread->t_pid;
+	*return_pid = curthread->pid;
 	return 0;
 }
 

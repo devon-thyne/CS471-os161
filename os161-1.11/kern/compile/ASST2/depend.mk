@@ -265,11 +265,11 @@ vfspath.o: ../../fs/vfs/vfspath.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/kern/limits.h ../../include/kern/unistd.h \
   ../../include/vfs.h ../../include/vnode.h ../../include/lib.h \
-  machine/setjmp.h
+  machine/setjmp.h ../../include/proj2_debug.h
 vnode.o: ../../fs/vfs/vnode.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/lib.h machine/setjmp.h ../../include/synch.h \
-  ../../include/vnode.h
+  ../../include/vnode.h ../../include/proj2_debug.h
 devnull.o: ../../fs/vfs/devnull.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/lib.h machine/setjmp.h ../../include/vfs.h \
@@ -310,7 +310,7 @@ menu.o: ../../main/menu.c ../../include/types.h machine/types.h \
   ../../include/syscall.h ../../include/uio.h ../../include/vfs.h \
   ../../include/sfs.h ../../include/vnode.h ../../include/fs.h \
   ../../include/kern/sfs.h ../../include/test.h opt-synchprobs.h \
-  opt-sfs.h opt-net.h
+  opt-sfs.h opt-net.h ../../include/proj2_debug.h
 hello.o: ../../main/hello.c
 loadelf.o: ../../userprog/loadelf.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
@@ -324,7 +324,7 @@ runprogram.o: ../../userprog/runprogram.c ../../include/types.h \
   ../../include/lib.h machine/setjmp.h ../../include/addrspace.h \
   ../../include/vm.h machine/vm.h opt-dumbvm.h ../../include/thread.h \
   machine/pcb.h ../../include/curthread.h ../../include/vfs.h \
-  ../../include/test.h
+  ../../include/test.h ../../include/proj2_debug.h
 uio.o: ../../userprog/uio.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
   machine/setjmp.h ../../include/uio.h ../../include/thread.h \

@@ -18,6 +18,10 @@
 #include "opt-sfs.h"
 #include "opt-net.h"
 
+// custom include files
+
+#include <proj2_debug.h>
+
 #define _PATH_SHELL "/bin/sh"
 
 #define MAXMENUARGS  16
@@ -69,7 +73,16 @@ cmd_progthread(void *ptr, unsigned long nargs)
 
 	strcpy(progname, args[0]);
 
+	#ifdef PROJ2_DEBUG
+        kprintf("menu.c in cmd_progthread() pre runprogram(), progname = %s\n", progname);
+        #endif
+
 	result = runprogram(progname);
+	
+	#ifdef PROJ2_DEBUG
+        kprintf("menu.c in cmd_progthread() post runprogram(), progname = %s\n", progname);
+        #endif
+	
 	if (result) {
 		kprintf("Running program %s failed: %s\n", args[0],
 			strerror(result));
@@ -102,9 +115,19 @@ common_prog(int nargs, char **args)
 		"synchronization-problems kernel.\n");
 #endif
 
+	#ifdef PROJ2_DEBUG
+	kprintf("menu.c in common_prog() pre thread_fork(), args[0] = %s\n", args[0]);
+	#endif
+
 	result = thread_fork(args[0] /* thread name */,
 			args /* thread arg */, nargs /* thread arg */,
 			cmd_progthread, NULL);
+
+	#ifdef PROJ2_DEBUG
+        kprintf("menu.c in common_prog() post thread_fork()\n");
+        #endif
+	
+
 	if (result) {
 		kprintf("thread_fork failed: %s\n", strerror(result));
 		return result;

@@ -18,7 +18,10 @@ main(int argc, char *argv[])
 {
 	int pid;
 
+	printf("getpidtest.c pre-getpid() func.\n");	
+
 	pid = getpid();
+
 	printf("user-side getpid() = %d\n", pid);
 
 	reboot(RB_REBOOT);

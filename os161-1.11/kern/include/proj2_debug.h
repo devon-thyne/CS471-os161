@@ -9,4 +9,4 @@
 
 //global constant to turn on/off debugging features for all Project 2 components
 
-#define PROJ2_DEBUG 1
+#define PROJ2_DEBUG 1 

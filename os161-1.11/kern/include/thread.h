@@ -41,7 +41,11 @@ struct thread {
 	/*
  	 * Process Structure Components
  	 */
-	pid_t t_pid;
+	pid_t pid;
+	pid_t parent_pid;
+	struct lock *exit_lock;
+	int exited;
+	int exit_code;
 };
 
 /* Call once during startup to allocate data structures. */
