@@ -16,8 +16,11 @@
 int
 main(int argc, char *argv[])
 {
-	int pidcheck;
+	int pid;
 
-	pidcheck = getpid();
+	pid = getpid();
+	printf("user-side getpid() = %d\n", pid);
+
+	reboot(RB_REBOOT);
 	return 0;
 }

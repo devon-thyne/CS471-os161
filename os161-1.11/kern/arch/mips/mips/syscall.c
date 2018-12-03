@@ -55,6 +55,7 @@ mips_syscall(struct trapframe *tf)
 	int callno;
 	int32_t retval;
 	int err;
+	unsigned int i;
 
 	assert(curspl==0);
 
@@ -83,11 +84,18 @@ mips_syscall(struct trapframe *tf)
 
 	    /* Add stuff here */
 
+	    case SYS_write:
+		for(i = 0; i < (size_t) tf->tf_a2; ++i){
+			kprintf("%c", ((char *) tf->tf_a1)[i]);
+		}
+		break;
+
 	    case SYS_getpid:
 		#ifdef PROJ2_DEBUG
 		kprintf("syscall %d: SYS_getpid\n", callno);
 		#endif //DEBUG
 		err = sys_getpid(&retval);
+		kprintf("kernel-side getpid = %d\n", retval);
 		break;
 
 	    case SYS_fork:
