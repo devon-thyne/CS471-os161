@@ -287,7 +287,7 @@ scheduler.o: ../../thread/scheduler.c ../../include/types.h \
   machine/types.h ../../include/kern/types.h machine/ktypes.h \
   ../../include/lib.h machine/setjmp.h ../../include/scheduler.h \
   ../../include/thread.h machine/pcb.h machine/spl.h \
-  ../../include/queue.h
+  ../../include/queue.h ../../include/pid.h
 thread.o: ../../thread/thread.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/lib.h \
   machine/setjmp.h ../../include/kern/errno.h ../../include/array.h \
@@ -295,6 +295,10 @@ thread.o: ../../thread/thread.c ../../include/types.h machine/types.h \
   ../../include/curthread.h ../../include/scheduler.h \
   ../../include/addrspace.h ../../include/vm.h machine/vm.h opt-dumbvm.h \
   ../../include/vnode.h opt-synchprobs.h
+pid.o: ../../thread/pid.c ../../include/types.h machine/types.h \
+  ../../include/kern/types.h machine/ktypes.h ../../include/pid.h \
+  ../../include/lib.h machine/setjmp.h ../../include/thread.h \
+  machine/pcb.h ../../include/scheduler.h ../../include/kern/limits.h
 main.o: ../../main/main.c ../../include/types.h machine/types.h \
   ../../include/kern/types.h machine/ktypes.h ../../include/kern/errno.h \
   ../../include/kern/unistd.h ../../include/lib.h machine/setjmp.h \

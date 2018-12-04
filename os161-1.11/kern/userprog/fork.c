@@ -13,7 +13,7 @@
 #include <curthread.h>
 #include <syscall.h>
 #include <machine/trapframe.h>
-
+#include <pid.h>
 
 
 /*
@@ -24,23 +24,26 @@
  *
  */
 
-pid_t
-sys_fork(void)
+int
+sys_fork(struct trapframe *parent_tf, pid_t *child_pid)
 {
 	/*Create a PID for child process and add to process_table*/
-	
-	//child = get_new_pid()
-	//if(child == NULL) /can't get a pid
-	//	return -1
-	//else
-	//
-	//Child trapframe = parent Trapframe
-	//caddrspc = as_copy();
-	//thread_fork();
-	//
-	//??
-	//if child return 0
-	//if parent return child
-	return 0;
+	int child_pid = assign_pid();
+	if(child_pid == -1){
+		return EAGAIN;
+	}	
+
+	struct trapframe *child_tf;
+	child_tf = kmalloc(sizeof(struct trapframe));
+	if(child_tf == NULL){
+		return ENOMEM;
+	}
+
+	//set child trapframe to parent trapframe
+	*child_tf = *parent_tf;
+
+	//fork thread, this creating child process
+	//return thread_fork(curthread->t_name,
+	return -1;
 }
 

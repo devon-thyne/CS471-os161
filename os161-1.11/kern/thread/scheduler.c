@@ -11,6 +11,14 @@
 #include <thread.h>
 #include <machine/spl.h>
 #include <queue.h>
+#include <pid.h>
+
+/*
+ * Process data
+ */
+
+// Process table where index = pid and value = pointer to thread
+static int *process_table;
 
 /*
  *  Scheduler data
@@ -25,11 +33,32 @@ static struct queue *runqueue;
 void
 scheduler_bootstrap(void)
 {
+	//process table initialization
+	int proc_table_check = proc_table_create(process_table);
+	if(proc_table_check == -1){
+		panic("scheduler: Failed to create process table\n");
+	}
+
 	runqueue = q_create(32);
 	if (runqueue == NULL) {
 		panic("scheduler: Could not create run queue\n");
 	}
 }
+
+//====================================================================
+// Process Structure Implementation
+// ===================================================================
+
+/*
+ * Returns pointer to process table to make accessible outside scheduler.c
+ */
+int *
+get_process_table()
+{
+	return process_table;
+}
+
+//====================================================================
 
 /*
  * Ensure space for handling at least NTHREADS threads.

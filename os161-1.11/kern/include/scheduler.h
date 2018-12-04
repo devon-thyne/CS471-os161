@@ -30,4 +30,9 @@ int scheduler_preallocate(int numthreads);
 void scheduler_killall(void);
 void scheduler_shutdown(void);
 
+//=============================================
+//Process Structure Implementation
+
+int * get_process_table(void);
+
 #endif /* _SCHEDULER_H_ */

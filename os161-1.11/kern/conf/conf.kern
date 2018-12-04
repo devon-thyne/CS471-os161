@@ -365,6 +365,7 @@ file      thread/hardclock.c
 file      thread/synch.c
 file      thread/scheduler.c
 file      thread/thread.c
+file	  thread/pid.c
 
 #
 # Main/toplevel stuff
